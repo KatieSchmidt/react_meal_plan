@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_MEALS } from "./types";
+import { GET_MEALS, CREATE_MEAL } from "./types";
 
 //get meals
 export const getMeals = () => dispatch => {
@@ -17,4 +17,9 @@ export const getMeals = () => dispatch => {
         payload: err.data
       })
     );
+};
+
+//create meal
+export const createMeal = (mealName, history) => dispatch => {
+  axios.post("./api/meals", mealName).then(res => history.push("./meals"));
 };

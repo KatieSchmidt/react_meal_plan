@@ -4,13 +4,17 @@ import "./App.css";
 import { Provider } from "react-redux";
 import store from "./store";
 import Meals from "./components/meals/Meals";
+import CreateMeal from "./components/meal/CreateMeal";
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
         <Router>
-          <Route exact path="/meals" component={Meals} />
+          <div>
+            <Route exact path="/meals" component={Meals} />
+            <Route exact path="/create-meal" component={CreateMeal} />
+          </div>
         </Router>
       </Provider>
     );
