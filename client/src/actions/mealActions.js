@@ -26,9 +26,12 @@ export const createMeal = (mealName, history) => dispatch => {
 
 //add ingredients to meal
 export const addIngredient = (meal_id, mealData, history) => dispatch => {
-  axios
-    .post(`./api/meals/${meal_id}/ingredient`, mealData)
-    .then(res => history.push("./meals/:meal_id/ingredient"));
+  axios.post(`/api/meals/${meal_id}/ingredient`, mealData).then(res =>
+    dispatch({
+      type: GET_MEAL_BY_ID,
+      payload: res.data
+    })
+  );
 };
 
 // get meal by id

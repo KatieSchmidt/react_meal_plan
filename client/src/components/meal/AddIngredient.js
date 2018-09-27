@@ -14,6 +14,7 @@ class AddIngredient extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
+  componentWillReceiveProps() {}
 
   onChange(e) {
     this.setState({
@@ -22,7 +23,7 @@ class AddIngredient extends Component {
   }
   onSubmit(e) {
     e.preventDefault();
-    const meal_id = this.props.meal._id;
+    const meal_id = this.props.meal.meal._id;
     const ingredientData = {
       ingredient: this.state.ingredient,
       calories: this.state.calories
@@ -32,7 +33,7 @@ class AddIngredient extends Component {
   render() {
     return (
       <div>
-        <h1>Create a Meal</h1>
+        <h2>Add Ingredients</h2>
         <form onSubmit={this.onSubmit}>
           <input
             placeholder="Ingredient"
@@ -59,9 +60,7 @@ AddIngredient.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  meal: state.meal,
-  ingredient: state.ingredient,
-  calories: state.calories
+  meal: state.meal
 });
 
 export default connect(

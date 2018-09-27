@@ -1,9 +1,4 @@
-import {
-  GET_MEALS,
-  CREATE_MEAL,
-  ADD_INGREDIENT,
-  GET_MEAL_BY_ID
-} from "../actions/types";
+import { GET_MEALS, CREATE_MEAL, GET_MEAL_BY_ID } from "../actions/types";
 
 const initialState = {
   meal: null,
@@ -23,11 +18,6 @@ export default function(state = initialState, action) {
         meals: action.payload
       };
     case CREATE_MEAL:
-      return {
-        ...state,
-        meal: action.payload
-      };
-    case ADD_INGREDIENT:
       return {
         ...state,
         meal: action.payload

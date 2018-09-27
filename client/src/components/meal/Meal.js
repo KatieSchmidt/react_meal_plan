@@ -30,7 +30,7 @@ class Meal extends Component {
         {mealContent}
         <ul>{mealIngredients}</ul>
 
-        <AddIngredient />
+        <AddIngredient meal={this.props.meal} />
       </div>
     );
   }

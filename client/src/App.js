@@ -7,6 +7,7 @@ import Meals from "./components/meals/Meals";
 import CreateMeal from "./components/meal/CreateMeal";
 import Meal from "./components/meal/Meal";
 import Navbar from "./components/navbar/Navbar";
+import AddIngredient from "./components/meal/AddIngredient";
 
 class App extends Component {
   render() {
@@ -18,6 +19,11 @@ class App extends Component {
             <Route exact path="/meals" component={Meals} />
             <Route exact path="/create-meal" component={CreateMeal} />
             <Route exact path="/meals/:meal_id" component={Meal} />
+            <Route
+              exact
+              path="/meals/:meal_id/ingredient"
+              component={AddIngredient}
+            />
           </div>
         </Router>
       </Provider>
