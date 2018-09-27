@@ -46,8 +46,7 @@ class CreateMeal extends Component {
 }
 
 CreateMeal.propTypes = {
-  createMeal: PropTypes.func.isRequired,
-  meal: PropTypes.object.isRequired
+  createMeal: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

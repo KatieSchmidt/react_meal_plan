@@ -9,7 +9,7 @@ class Meals extends Component {
     this.props.getMeals();
   }
   render() {
-    const { meals } = this.props.meals;
+    const { meals } = this.props.meal;
     let mealItems;
     if (meals) {
       mealItems = meals.map(meal => <MealItem key={meal._id} meal={meal} />);
@@ -17,7 +17,7 @@ class Meals extends Component {
     return (
       <div>
         <h1>Meals Component</h1>
-        <div>{mealItems}</div>;
+        <div>{mealItems}</div>
       </div>
     );
   }
@@ -29,7 +29,7 @@ Meals.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  meals: state.meals
+  meal: state.meal
 });
 
 export default connect(

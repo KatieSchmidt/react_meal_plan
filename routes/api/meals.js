@@ -13,7 +13,8 @@ router.get("/", (req, res) => {
         errors.meal = "No meals have been created";
         res.status(404).json(errors.meal);
       } else {
-        res.json(meals);
+        console.log(meals);
+        return res.json(meals);
       }
     })
     .catch(err => res.status(404).json(err));
