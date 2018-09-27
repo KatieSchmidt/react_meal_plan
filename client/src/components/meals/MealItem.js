@@ -15,9 +15,9 @@ class MealItem extends Component {
       ));
     }
     return (
-      <div>
-        <h1>Meal Item Component</h1>
-        <h3>{meal.mealname}</h3>
+      <div className="meal-item-component">
+        <h2>{meal.mealname}</h2>
+        <h3 className="total-calories"> {meal.totalcalories} Calories</h3>
         <ul>{ingredientList}</ul>
         <Link to={`/meals/${meal._id}`}>Edit Meal</Link>
       </div>

@@ -51,3 +51,21 @@ export const getMealById = meal_id => dispatch => {
       })
     );
 };
+
+//delete ingredient
+export const deleteIngredient = (meal_id, ing_id) => dispatch => {
+  axios
+    .delete(`/api/meals/${meal_id}/ingredient/${ing_id}`)
+    .then(res =>
+      dispatch({
+        type: GET_MEAL_BY_ID,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_MEAL_BY_ID,
+        payload: "there was an error deleting the ingredient"
+      })
+    );
+};

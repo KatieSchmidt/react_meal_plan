@@ -13,7 +13,6 @@ router.get("/", (req, res) => {
         errors.meal = "No meals have been created";
         res.status(404).json(errors.meal);
       } else {
-        console.log(meals);
         return res.json(meals);
       }
     })
@@ -77,6 +76,26 @@ router.post("/:meal_id/ingredient", (req, res) => {
           mealCals += ingredient.calories;
         });
         meal.totalcalories = mealCals;
+        meal.save().then(meal => res.json(meal));
+      }
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+//@route  DELETE api/meals/:meal_id/ingredient/:ing_id
+//@dsc    remove ingredient
+//@access Public
+router.delete("/:meal_id/ingredient/:ing_id", (req, res) => {
+  Meal.findById(req.params.meal_id)
+    .then(meal => {
+      if (!meal) {
+        errors.meal = "this meal doesnt exist";
+        res.status(400).json(errors.meal);
+      } else {
+        const removeIndex = meal.ingredients
+          .map(ingredient => ingredient.id)
+          .indexOf(req.params.ing_id);
+        meal.ingredients.splice(removeIndex, 1);
         meal.save().then(meal => res.json(meal));
       }
     })
