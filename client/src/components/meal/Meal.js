@@ -11,10 +11,10 @@ class Meal extends Component {
     }
   }
 
-  componentWillReceiveProps() {}
+  componentWillReceiveProps(nextProps) {}
 
-  onDeleteClick(e) {
-    this.props.deleteIngredient(this.props.match.params.meal_id, e.target.key);
+  onDeleteClick(id) {
+    this.props.deleteIngredient(this.props.match.params.meal_id, id);
   }
   render() {
     const { meal } = this.props.meal;
@@ -27,12 +27,9 @@ class Meal extends Component {
       mealIngredients = meal.ingredients.map(ingredient => {
         return (
           <li key={ingredient._id}>
-            {ingredient.ingredient}{" "}
-            <button
-              key={ingredient._id}
-              onClick={this.onDeleteClick.bind(this)}
-            >
-              delete
+            {ingredient.ingredient} - {ingredient.calories}
+            <button onClick={this.onDeleteClick.bind(this, ingredient._id)}>
+              Delete
             </button>
           </li>
         );

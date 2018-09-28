@@ -88,11 +88,10 @@ router.post("/:meal_id/ingredient", (req, res) => {
 router.delete("/:meal_id/ingredient/:ing_id", (req, res) => {
   Meal.findById(req.params.meal_id)
     .then(meal => {
-      console.log(meal);
       const removeIndex = meal.ingredients
         .map(ingredient => ingredient.id)
         .indexOf(req.params.ing_id);
-      console.log(removeIndex);
+
       meal.ingredients.splice(removeIndex, 1);
       meal.save().then(meal => res.json(meal));
     })
