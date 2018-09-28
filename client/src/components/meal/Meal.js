@@ -49,7 +49,6 @@ class Meal extends Component {
         {mealContent}
         <button onClick={this.onDeleteMealClick.bind(this)}>Delete Meal</button>
         <ul>{mealIngredients}</ul>
-
         <AddIngredient meal={this.props.meal} />
       </div>
     );
@@ -57,6 +56,7 @@ class Meal extends Component {
 }
 
 Meal.propTypes = {
+  deleteMeal: PropTypes.func.isRequired,
   deleteIngredient: PropTypes.func.isRequired,
   getMealById: PropTypes.func.isRequired,
   meal: PropTypes.object.isRequired
