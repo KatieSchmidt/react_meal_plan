@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_MEALS, GET_MEAL_BY_ID } from "./types";
+import { GET_MEALS, GET_MEAL_BY_ID, DELETE_MEAL } from "./types";
 
 //get meals
 export const getMeals = () => dispatch => {
@@ -25,7 +25,7 @@ export const createMeal = (mealName, history) => dispatch => {
 };
 
 //add ingredients to meal
-export const addIngredient = (meal_id, mealData, history) => dispatch => {
+export const addIngredient = (meal_id, mealData) => dispatch => {
   axios.post(`/api/meals/${meal_id}/ingredient`, mealData).then(res =>
     dispatch({
       type: GET_MEAL_BY_ID,
@@ -68,4 +68,9 @@ export const deleteIngredient = (meal_id, ing_id) => dispatch => {
         payload: "there was an error deleting the ingredient"
       })
     );
+};
+
+//delete meal
+export const deleteMeal = (meal_id, history) => dispatch => {
+  axios.delete(`/api/meals/${meal_id}`).then(res => history.push("/meals"));
 };

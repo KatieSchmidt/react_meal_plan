@@ -82,6 +82,15 @@ router.post("/:meal_id/ingredient", (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
+//@route  DELETE api/meals/:meal_id
+//@dsc    delete a meal
+//@access Public
+router.delete("/:meal_id", (req, res) => {
+  Meal.findByIdAndRemove(req.params.meal_id).then(() => {
+    res.json({ success: true });
+  });
+});
+
 //@route  DELETE api/meals/:meal_id/ingredient/:ing_id
 //@dsc    remove ingredient
 //@access Public

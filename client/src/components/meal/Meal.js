@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getMealById, deleteIngredient } from "../../actions/mealActions";
+import {
+  getMealById,
+  deleteIngredient,
+  deleteMeal
+} from "../../actions/mealActions";
 import AddIngredient from "./AddIngredient";
 
 class Meal extends Component {
@@ -13,7 +17,10 @@ class Meal extends Component {
 
   componentWillReceiveProps(nextProps) {}
 
-  onDeleteClick(id) {
+  onDeleteMealClick() {
+    this.props.deleteMeal(this.props.match.params.meal_id, this.props.history);
+  }
+  onDeleteIngredientClick(id) {
     this.props.deleteIngredient(this.props.match.params.meal_id, id);
   }
   render() {
@@ -28,7 +35,9 @@ class Meal extends Component {
         return (
           <li key={ingredient._id}>
             {ingredient.ingredient} - {ingredient.calories}
-            <button onClick={this.onDeleteClick.bind(this, ingredient._id)}>
+            <button
+              onClick={this.onDeleteIngredientClick.bind(this, ingredient._id)}
+            >
               Delete
             </button>
           </li>
@@ -38,6 +47,7 @@ class Meal extends Component {
     return (
       <div>
         {mealContent}
+        <button onClick={this.onDeleteMealClick.bind(this)}>Delete Meal</button>
         <ul>{mealIngredients}</ul>
 
         <AddIngredient meal={this.props.meal} />
@@ -58,5 +68,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getMealById, deleteIngredient }
+  { getMealById, deleteIngredient, deleteMeal }
 )(Meal);
