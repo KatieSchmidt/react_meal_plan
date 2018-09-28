@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 const meals = require("./routes/api/meals");
+const mealplan = require("./routes/api/meal-plan");
 
 // body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,6 +26,7 @@ mongoose
 
 //use routes
 app.use("/api/meals", meals);
+app.use("/api/meal-plan", mealplan);
 
 const port = process.env.PORT || 5000;
 
