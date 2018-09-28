@@ -92,6 +92,8 @@ router.delete("/:meal_id/ingredient/:ing_id", (req, res) => {
         .map(ingredient => ingredient.id)
         .indexOf(req.params.ing_id);
 
+      let calsToRemove = meal.ingredients[removeIndex].calories;
+      meal.totalcalories -= calsToRemove;
       meal.ingredients.splice(removeIndex, 1);
       meal.save().then(meal => res.json(meal));
     })

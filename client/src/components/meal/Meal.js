@@ -23,7 +23,7 @@ class Meal extends Component {
     if (!meal) {
       mealContent = <div>Meal Not Found</div>;
     } else {
-      mealContent = <div>{meal.mealname}</div>;
+      mealContent = <h1>{meal.mealname.toUpperCase()}</h1>;
       mealIngredients = meal.ingredients.map(ingredient => {
         return (
           <li key={ingredient._id}>
@@ -37,7 +37,6 @@ class Meal extends Component {
     }
     return (
       <div>
-        <h1>Meal Component</h1>
         {mealContent}
         <ul>{mealIngredients}</ul>
 

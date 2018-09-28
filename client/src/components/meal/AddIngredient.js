@@ -33,7 +33,7 @@ class AddIngredient extends Component {
   render() {
     return (
       <div>
-        <h2>Add Ingredients</h2>
+        <h3>Add Ingredients</h3>
         <form onSubmit={this.onSubmit}>
           <input
             placeholder="Ingredient"

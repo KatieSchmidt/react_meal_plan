@@ -6,19 +6,35 @@ import PropTypes from "prop-types";
 class MealItem extends Component {
   render() {
     const { meal } = this.props;
-    let ingredientList;
-    if (meal.ingredients) {
-      ingredientList = meal.ingredients.map(ingredient => (
-        <li key={ingredient._id}>
-          {ingredient.ingredient}-{ingredient.calories}
-        </li>
-      ));
+    let ingredientsInfo;
+    let caloriesInfo;
+
+    if (meal.totalcalories) {
+      caloriesInfo = (
+        <h4 className="total-calories"> {meal.totalcalories} Calories</h4>
+      );
+    } else {
+      caloriesInfo = <h4 className="total-calories">No calories listed</h4>;
     }
+
+    if (meal.ingredients) {
+      ingredientsInfo = (
+        <h4 className="total-ingredients">
+          {" "}
+          {meal.ingredients.length} Ingredients
+        </h4>
+      );
+    } else {
+      ingredientsInfo = (
+        <h4 className="total-ingredients">No ingredients listed</h4>
+      );
+    }
+
     return (
       <div className="meal-item-component">
         <h2>{meal.mealname}</h2>
-        <h3 className="total-calories"> {meal.totalcalories} Calories</h3>
-        <ul>{ingredientList}</ul>
+        {caloriesInfo}
+        {ingredientsInfo}
         <Link to={`/meals/${meal._id}`}>Edit Meal</Link>
       </div>
     );

@@ -16,7 +16,6 @@ class Meals extends Component {
     }
     return (
       <div>
-        <h1>Meals Component</h1>
         <div>{mealItems}</div>
       </div>
     );
