@@ -8,6 +8,10 @@ const MealPlanSchema = new Schema({
     type: String,
     required: true
   },
+  totalcalories: {
+    type: Number,
+    default: 0
+  },
   meals: [
     {
       meal: {

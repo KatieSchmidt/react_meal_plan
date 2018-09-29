@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Meal = require("../../models/Meal");
 const MealPlan = require("../../models/MealPlan");
-const Day = require("../../models/Day");
 
 //GET ROUTES
 //@route  GET api/meal-plan
@@ -49,6 +48,7 @@ router.post("/", (req, res) => {
 router.post("/:plan_id", (req, res) => {
   MealPlan.findById(req.params.plan_id).then(mealplan => {
     Meal.findById(req.body.mealid).then(meal => {
+      mealplan.totalcalories += meal.totalcalories;
       mealplan.meals.unshift(meal);
       mealplan.save().then(mealplan => res.json(mealplan));
     });
