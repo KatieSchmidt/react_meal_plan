@@ -72,4 +72,27 @@ router.delete("/:plan_id", (req, res) => {
     );
 });
 
+//@route  DELETE api/meal-plan/:plan_id/:meal_id
+//@dsc    remove meal and calories from mealplan
+//@access Public
+router.delete("/:plan_id/:meal_id", (req, res) => {
+  MealPlan.findById(req.params.plan_id).then(mealplan => {
+    Meal.findById(req.params.meal_id)
+      .then(meal => {
+        mealplan.totalcalories -= meal.totalcalories;
+        const removeIndex = mealplan.meals
+          .map(meal => meal.id)
+          .indexOf(req.params.meal_id);
+        if (removeIndex === -1) {
+          return res.json({ message: "there is no more of that meal" });
+        }
+        mealplan.meals.splice(removeIndex, 1);
+        mealplan.save().then(mealplan => res.json(mealplan));
+      })
+      .catch(err =>
+        res.json({ error: "there was an error deleting this meal" })
+      );
+  });
+});
+
 module.exports = router;
