@@ -30,6 +30,14 @@ class Navbar extends Component {
                     {" "}
                     Create Meal
                   </Link>
+                  <Link className="nav-link" to="/create-mealplan">
+                    {" "}
+                    Create Mealplan
+                  </Link>
+                  <Link className="nav-link" to="/meal-plan">
+                    {" "}
+                    Mealplans
+                  </Link>
                 </li>
               </ul>
             </div>

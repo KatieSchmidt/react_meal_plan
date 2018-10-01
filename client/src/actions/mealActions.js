@@ -1,10 +1,10 @@
 import axios from "axios";
-import { GET_MEALS, GET_MEAL_BY_ID, DELETE_MEAL } from "./types";
+import { GET_MEALS, GET_MEAL_BY_ID } from "./types";
 
 //get meals
 export const getMeals = () => dispatch => {
   axios
-    .get("./api/meals")
+    .get("/api/meals")
     .then(res =>
       dispatch({
         type: GET_MEALS,
@@ -72,5 +72,5 @@ export const deleteIngredient = (meal_id, ing_id) => dispatch => {
 
 //delete meal
 export const deleteMeal = (meal_id, history) => dispatch => {
-  axios.delete(`/api/meals/${meal_id}`).then(res => history.push("/meals"));
+  axios.delete(`/api/meals/${meal_id}`).then(res => history.push("/"));
 };

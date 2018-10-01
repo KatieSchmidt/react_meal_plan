@@ -8,6 +8,7 @@ class Meals extends Component {
   componentDidMount() {
     this.props.getMeals();
   }
+
   render() {
     const { meals } = this.props.meal;
     let mealItems;

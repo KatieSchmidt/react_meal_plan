@@ -2,14 +2,12 @@ import {
   GET_MEALPLANS,
   CREATE_MEALPLAN,
   GET_MEALPLAN_BY_ID,
-  ADD_MEAL_TO_MEALPLAN,
-  DELETE_MEAL_FROM_MEALPLAN,
-  DELETE_MEALPLAN
+  ADD_MEAL_TO_MEALPLAN
 } from "../actions/types";
 
 const initialState = {
-  meal: null,
-  meals: null
+  mealplans: null,
+  mealplan: null
 };
 
 export default function(state = initialState, action) {
@@ -29,20 +27,10 @@ export default function(state = initialState, action) {
         ...state,
         mealplan: action.payload
       };
-    case DELETE_MEALPLAN:
-      return {
-        ...state,
-        mealplan: action.payload
-      };
     case ADD_MEAL_TO_MEALPLAN:
       return {
         ...state,
         mealplan: action.payload
-      };
-    case DELETE_MEAL_FROM_MEALPLAN:
-      return {
-        ...state,
-        mealplans: action.payload
       };
     default:
       return state;
