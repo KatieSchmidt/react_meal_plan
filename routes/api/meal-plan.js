@@ -20,6 +20,7 @@ router.get("/", (req, res) => {
 //@access Public
 router.get("/:plan_id", (req, res) => {
   MealPlan.findById(req.params.plan_id)
+    .populate("meals")
     .then(plan => res.json(plan))
     .catch(err =>
       res
@@ -49,7 +50,7 @@ router.post("/:plan_id", (req, res) => {
   MealPlan.findById(req.params.plan_id).then(mealplan => {
     Meal.findById(req.body.mealid).then(meal => {
       mealplan.totalcalories += meal.totalcalories;
-      mealplan.meals.unshift(meal);
+      mealplan.meals.unshift(meal._id);
       mealplan.save().then(mealplan => res.json(mealplan));
     });
   });

@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getMealplanById, deleteMealplan } from "../../actions/mealplanActions";
-// import AddMealToMealplan from "./AddMealToMealplan";
+import {
+  getMealplanById,
+  deleteMealplan,
+  deleteMealFromMealplan
+} from "../../actions/mealplanActions";
 import Meals from "../meals/Meals";
 
 class Mealplan extends Component {
@@ -21,7 +24,11 @@ class Mealplan extends Component {
     );
   }
   onDeleteMealFromMealplanClick(id) {
-    // this.props.deleteMealFromMealplan(this.props.match.params.mealplan_id, id);
+    this.props.deleteMealFromMealplan(
+      this.props.match.params.mealplan_id,
+      id,
+      this.props.history
+    );
   }
   render() {
     const { mealplan } = this.props.mealplan;
@@ -34,7 +41,7 @@ class Mealplan extends Component {
       mealContent = mealplan.meals.map(meal => {
         return (
           <li key={meal._id}>
-            {meal.mealname}
+            {meal._id}
             <button
               onClick={this.onDeleteMealFromMealplanClick.bind(this, meal._id)}
             >
@@ -59,7 +66,7 @@ class Mealplan extends Component {
 }
 
 Mealplan.propTypes = {
-  // deleteMealFromMealplan: PropTypes.func.isRequired,
+  deleteMealFromMealplan: PropTypes.func.isRequired,
   deleteMealplan: PropTypes.func.isRequired,
   getMealplanById: PropTypes.func.isRequired,
   mealplan: PropTypes.object.isRequired
@@ -71,5 +78,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getMealplanById, deleteMealplan }
+  { getMealplanById, deleteMealplan, deleteMealFromMealplan }
 )(Mealplan);

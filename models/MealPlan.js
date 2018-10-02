@@ -14,10 +14,8 @@ const MealPlanSchema = new Schema({
   },
   meals: [
     {
-      meal: {
-        type: Schema.Types.ObjectId,
-        ref: "meal"
-      }
+      type: Schema.Types.ObjectId,
+      ref: "meals"
     }
   ]
 });

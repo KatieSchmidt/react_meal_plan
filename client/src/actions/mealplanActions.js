@@ -4,8 +4,6 @@ import {
   GET_MEALPLAN_BY_ID,
   CREATE_MEALPLAN,
   ADD_MEAL_TO_MEALPLAN
-  // DELETE_MEALPLAN,
-  // DELETE_MEAL_FROM_MEALPLAN
 } from "./types";
 
 //get mealplans
@@ -68,24 +66,33 @@ export const addMealToMealplan = (mealplan_id, mealData) => dispatch => {
 };
 
 //delete meal from mealplan
-// export const deleteMealFromMealplan = (mealplan_id, meal_id) => dispatch => {
-//   axios
-//     .delete(`/api/meal-plan/${mealplan_id}`)
-//     .then(res =>
-//       dispatch({
-//         type: DELETE_MEAL_FROM_MEALPLAN,
-//         payload: res.data
-//       })
-//     )
-//     .catch(err =>
-//       dispatch({
-//         type: DELETE_MEAL_FROM_MEALPLAN,
-//         payload: "there was an error deleting the meal from the mealplan"
-//       })
-//     );
-// };
+export const deleteMealFromMealplan = (
+  mealplan_id,
+  meal_id,
+  history
+) => dispatch => {
+  axios
+    .delete(`/api/meal-plan/${mealplan_id}/${meal_id}`)
+    .then(res => {
+      dispatch(getMealplanById(mealplan_id));
+    })
+    .then(history.push(`/meal-plan/${mealplan_id}`))
+    .then(res =>
+      dispatch({
+        type: GET_MEALPLAN_BY_ID,
+        payload: res.data
+      })
+    )
 
-//delete account and profile
+    .catch(err =>
+      dispatch({
+        type: GET_MEALPLAN_BY_ID,
+        payload: err.data
+      })
+    );
+};
+
+//delete mealplan
 export const deleteMealplan = (mealplan_id, history) => dispatch => {
   axios
     .delete(`/api/meal-plan/${mealplan_id}`)
