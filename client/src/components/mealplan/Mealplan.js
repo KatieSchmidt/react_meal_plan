@@ -6,7 +6,7 @@ import {
   deleteMealplan,
   deleteMealFromMealplan
 } from "../../actions/mealplanActions";
-import Meals from "../meals/Meals";
+import Meals from "./Meals";
 
 class Mealplan extends Component {
   componentDidMount() {
@@ -37,12 +37,21 @@ class Mealplan extends Component {
     if (!mealplan) {
       mealplanContent = <div>Mealplan Not Found</div>;
     } else {
-      mealplanContent = <h1>{mealplan.planname.toUpperCase()}</h1>;
+      mealplanContent = (
+        <div>
+          <h1>
+            {mealplan.planname.toUpperCase()} - {mealplan.totalcalories}{" "}
+            Calories
+          </h1>
+        </div>
+      );
+
       mealContent = mealplan.meals.map(meal => {
         return (
           <li key={meal._id}>
-            {meal._id}
+            {meal.mealname}
             <button
+              className="ml-2"
               onClick={this.onDeleteMealFromMealplanClick.bind(this, meal._id)}
             >
               Delete Meal
@@ -54,12 +63,13 @@ class Mealplan extends Component {
     return (
       <div>
         {mealplanContent}
+        <h3>Current Meals In This Mealplan</h3>
+        <ul>{mealContent}</ul>
+        <h3>Add Meals To Your Plan</h3>
+        {/* <Meals /> */}
         <button onClick={this.onDeleteMealplanClick.bind(this)}>
           Delete MealPlan
         </button>
-        <ul>{mealContent}</ul>
-        <h3>Add Meals To Your Plan</h3>
-        <Meals />
       </div>
     );
   }

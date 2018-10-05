@@ -9,6 +9,7 @@ const MealPlan = require("../../models/MealPlan");
 //@access Public
 router.get("/", (req, res) => {
   MealPlan.find()
+    .populate("meals")
     .then(plans => res.json(plans))
     .catch(err =>
       res.status(404).json({ noMealPlansFound: "No meal Plans found" })
@@ -21,7 +22,7 @@ router.get("/", (req, res) => {
 router.get("/:plan_id", (req, res) => {
   MealPlan.findById(req.params.plan_id)
     .populate("meals")
-    .then(plan => res.json(plan))
+    .then(mealplan => res.json(mealplan))
     .catch(err =>
       res
         .status(404)
@@ -46,12 +47,15 @@ router.post("/", (req, res) => {
 //@route  POST api/meal-plan/:plan_id
 //@dsc    add meal to mealplan
 //@access Public
-router.post("/:plan_id", (req, res) => {
-  MealPlan.findById(req.params.plan_id).then(mealplan => {
-    Meal.findById(req.body.mealid).then(meal => {
+router.post("/:mealplan_id", (req, res) => {
+  MealPlan.findById(req.params.mealplan_id).then(mealplan => {
+    Meal.findById(req.body.meal_id).then(meal => {
       mealplan.totalcalories += meal.totalcalories;
       mealplan.meals.unshift(meal._id);
-      mealplan.save().then(mealplan => res.json(mealplan));
+      mealplan
+        .save()
+        .populate("meals")
+        .then(mealplan => res.json(mealplan));
     });
   });
 });
@@ -81,12 +85,7 @@ router.delete("/:plan_id/:meal_id", (req, res) => {
     Meal.findById(req.params.meal_id)
       .then(meal => {
         mealplan.totalcalories -= meal.totalcalories;
-        const removeIndex = mealplan.meals
-          .map(meal => meal.id)
-          .indexOf(req.params.meal_id);
-        if (removeIndex === -1) {
-          return res.json({ message: "there is no more of that meal" });
-        }
+        const removeIndex = mealplan.meals.indexOf(req.params.meal_id);
         mealplan.meals.splice(removeIndex, 1);
         mealplan.save().then(mealplan => res.json(mealplan));
       })
