@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import {
   getMealplanById,
   deleteMealplan,
   deleteMealFromMealplan
 } from "../../actions/mealplanActions";
-import Meals from "./Meals";
+import Meals from "./meals/Meals";
 
 class Mealplan extends Component {
   componentDidMount() {
@@ -14,7 +15,6 @@ class Mealplan extends Component {
       this.props.getMealplanById(this.props.match.params.mealplan_id);
     }
   }
-
   componentWillReceiveProps() {}
 
   onDeleteMealplanClick() {
@@ -48,7 +48,7 @@ class Mealplan extends Component {
 
       mealContent = mealplan.meals.map(meal => {
         return (
-          <li key={meal._id}>
+          <li>
             {meal.mealname}
             <button
               className="ml-2"
@@ -66,7 +66,7 @@ class Mealplan extends Component {
         <h3>Current Meals In This Mealplan</h3>
         <ul>{mealContent}</ul>
         <h3>Add Meals To Your Plan</h3>
-        {/* <Meals /> */}
+        <Meals />
         <button onClick={this.onDeleteMealplanClick.bind(this)}>
           Delete MealPlan
         </button>
@@ -89,4 +89,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getMealplanById, deleteMealplan, deleteMealFromMealplan }
-)(Mealplan);
+)(withRouter(Mealplan));

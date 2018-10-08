@@ -47,15 +47,12 @@ router.post("/", (req, res) => {
 //@route  POST api/meal-plan/:plan_id
 //@dsc    add meal to mealplan
 //@access Public
-router.post("/:mealplan_id", (req, res) => {
+router.post("/:mealplan_id/:meal_id", (req, res) => {
   MealPlan.findById(req.params.mealplan_id).then(mealplan => {
-    Meal.findById(req.body.meal_id).then(meal => {
+    Meal.findById(req.params.meal_id).then(meal => {
       mealplan.totalcalories += meal.totalcalories;
       mealplan.meals.unshift(meal._id);
-      mealplan
-        .save()
-        .populate("meals")
-        .then(mealplan => res.json(mealplan));
+      mealplan.save().then(mealplan => res.json(mealplan));
     });
   });
 });
@@ -87,7 +84,10 @@ router.delete("/:plan_id/:meal_id", (req, res) => {
         mealplan.totalcalories -= meal.totalcalories;
         const removeIndex = mealplan.meals.indexOf(req.params.meal_id);
         mealplan.meals.splice(removeIndex, 1);
-        mealplan.save().then(mealplan => res.json(mealplan));
+        mealplan
+          .save()
+          .populate("meals")
+          .then(mealplan => res.json(mealplan));
       })
       .catch(err =>
         res.json({ error: "there was an error deleting this meal" })

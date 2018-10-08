@@ -37,7 +37,7 @@ export const getMealplanById = mealplan_id => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_MEALPLAN_BY_ID,
-        payload: err
+        payload: null
       })
     );
 };
@@ -56,13 +56,16 @@ export const createMealplan = (planname, history) => dispatch => {
 };
 
 //add meal to mealplan
-export const addMealToMealplan = (mealplan_id, mealData) => dispatch => {
-  axios.post(`/api/meal-plan/${mealplan_id}`, mealData).then(res =>
-    dispatch({
-      type: ADD_MEAL_TO_MEALPLAN,
-      payload: res.data
-    })
-  );
+export const addMealToMealplan = (mealplan_id, meal_id) => dispatch => {
+  axios
+    .post(`/api/meal-plan/${mealplan_id}/${meal_id}`)
+    .then(res => dispatch(getMealplanById(mealplan_id)))
+    .catch(err =>
+      dispatch({
+        type: ADD_MEAL_TO_MEALPLAN,
+        payload: `there was an error adding the meal: ${err}`
+      })
+    );
 };
 
 //delete meal from mealplan
@@ -73,21 +76,12 @@ export const deleteMealFromMealplan = (
 ) => dispatch => {
   axios
     .delete(`/api/meal-plan/${mealplan_id}/${meal_id}`)
-    .then(res => {
-      dispatch(getMealplanById(mealplan_id));
-    })
-    .then(history.push(`/meal-plan/${mealplan_id}`))
-    .then(res =>
-      dispatch({
-        type: GET_MEALPLAN_BY_ID,
-        payload: res.data
-      })
-    )
-
+    .then(res => dispatch(getMealplanById(mealplan_id)))
+    .then(res => history.push(`./${mealplan_id}`))
     .catch(err =>
       dispatch({
         type: GET_MEALPLAN_BY_ID,
-        payload: err.data
+        payload: "there was an error deleting the meal"
       })
     );
 };
