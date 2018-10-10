@@ -45,7 +45,7 @@ router.get("/:list_id", (req, res) => {
 //@dsc    get grocery lists
 //@access Public
 router.delete("/:list_id", (req, res) => {
-  MealPlan.findByIdAndRemove(req.params.list_id)
+  GroceryList.findByIdAndRemove(req.params.list_id)
     .then(() => {
       res.json({ success: true });
     })
