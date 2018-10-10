@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Meal = require("../../models/Meal");
 const MealPlan = require("../../models/MealPlan");
+const GroceryList = require("../../models/GroceryList");
 
 //GET ROUTES
 //@route  GET api/meal-plan

@@ -28,7 +28,7 @@ class MealItem extends Component {
     }
 
     return (
-      <div className="meal-item-component">
+      <div>
         <h2>{meal.mealname}</h2>
         {caloriesInfo}
         {ingredientsInfo}

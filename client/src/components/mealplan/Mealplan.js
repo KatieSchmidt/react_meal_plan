@@ -42,19 +42,25 @@ class Mealplan extends Component {
           <h1>
             {mealplan.planname.toUpperCase()} - {mealplan.totalcalories}{" "}
             Calories
+            <button
+              className=" ml-2 btn btn-sm btn-danger"
+              onClick={this.onDeleteMealplanClick.bind(this)}
+            >
+              Delete
+            </button>
           </h1>
         </div>
       );
 
       mealContent = mealplan.meals.map(meal => {
         return (
-          <li>
+          <li className="text-center">
             {meal.mealname}
             <button
-              className="ml-2"
+              className="m-1 btn btn-sm btn-danger"
               onClick={this.onDeleteMealFromMealplanClick.bind(this, meal._id)}
             >
-              Delete Meal
+              <i className="fa fa-times" />
             </button>
           </li>
         );
@@ -64,12 +70,9 @@ class Mealplan extends Component {
       <div>
         {mealplanContent}
         <h3>Current Meals In This Mealplan</h3>
-        <ul>{mealContent}</ul>
+        <ul className="list-unstyled">{mealContent}</ul>
         <h3>Add Meals To Your Plan</h3>
         <Meals />
-        <button onClick={this.onDeleteMealplanClick.bind(this)}>
-          Delete MealPlan
-        </button>
       </div>
     );
   }
