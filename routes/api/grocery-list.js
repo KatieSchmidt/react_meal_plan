@@ -23,4 +23,37 @@ router.post("/:mealplan_id", (req, res) => {
     });
 });
 
+//@route  GET api/grocery-list
+//@dsc    get grocery lists
+//@access Public
+router.get("/", (req, res) => {
+  GroceryList.find().then(lists => {
+    res.json(lists);
+  });
+});
+
+//@route  GET api/grocery-list/:list_id
+//@dsc    get grocery lists
+//@access Public
+router.get("/:list_id", (req, res) => {
+  GroceryList.findById(req.params.list_id).then(list => {
+    res.json(list);
+  });
+});
+
+//@route  DELETE api/grocery-list/:list_id
+//@dsc    get grocery lists
+//@access Public
+router.delete("/:list_id", (req, res) => {
+  MealPlan.findByIdAndRemove(req.params.list_id)
+    .then(() => {
+      res.json({ success: true });
+    })
+    .catch(err =>
+      res
+        .status(404)
+        .json({ noListFound: "No grocery list found with that id" })
+    );
+});
+
 module.exports = router;
