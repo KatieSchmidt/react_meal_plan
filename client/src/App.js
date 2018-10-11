@@ -11,6 +11,7 @@ import AddIngredient from "./components/meal/AddIngredient";
 import CreateMealplan from "./components/mealplan/CreateMealplan";
 import Mealplan from "./components/mealplan/Mealplan";
 import Mealplans from "./components/mealplans/Mealplans";
+import GroceryList from "./components/grocerylist/GroceryList";
 
 class App extends Component {
   render() {
@@ -31,6 +32,11 @@ class App extends Component {
             <Route exact path="/meal-plan" component={Mealplans} />
             <Route exact path="/create-mealplan" component={CreateMealplan} />
             <Route exact path="/meal-plan/:mealplan_id" component={Mealplan} />
+            <Route
+              exact
+              path="/grocery-list/:mealplan_id"
+              component={GroceryList}
+            />
           </div>
         </Router>
       </Provider>

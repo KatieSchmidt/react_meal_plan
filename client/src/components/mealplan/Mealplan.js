@@ -7,6 +7,7 @@ import {
   deleteMealplan,
   deleteMealFromMealplan
 } from "../../actions/mealplanActions";
+import { createGroceryList } from "../../actions/grocerylistActions";
 import Meals from "./meals/Meals";
 
 class Mealplan extends Component {
@@ -19,6 +20,12 @@ class Mealplan extends Component {
 
   onDeleteMealplanClick() {
     this.props.deleteMealplan(
+      this.props.match.params.mealplan_id,
+      this.props.history
+    );
+  }
+  onCreateGroceryListClick() {
+    this.props.createGroceryList(
       this.props.match.params.mealplan_id,
       this.props.history
     );
@@ -42,13 +49,19 @@ class Mealplan extends Component {
           <h1>
             {mealplan.planname.toUpperCase()} - {mealplan.totalcalories}{" "}
             Calories
-            <button
-              className=" ml-2 btn btn-sm btn-danger"
-              onClick={this.onDeleteMealplanClick.bind(this)}
-            >
-              Delete
-            </button>
           </h1>
+          <button
+            className=" ml-2 btn btn-sm btn-danger"
+            onClick={this.onDeleteMealplanClick.bind(this)}
+          >
+            Delete
+          </button>
+          <button
+            className=" ml-2 btn btn-sm btn-warning"
+            onClick={this.onCreateGroceryListClick.bind(this)}
+          >
+            Get Grocery List
+          </button>
         </div>
       );
 
@@ -81,6 +94,7 @@ class Mealplan extends Component {
 Mealplan.propTypes = {
   deleteMealFromMealplan: PropTypes.func.isRequired,
   deleteMealplan: PropTypes.func.isRequired,
+  createGroceryList: PropTypes.func.isRequired,
   getMealplanById: PropTypes.func.isRequired,
   mealplan: PropTypes.object.isRequired
 };
@@ -91,5 +105,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getMealplanById, deleteMealplan, deleteMealFromMealplan }
+  { getMealplanById, deleteMealplan, deleteMealFromMealplan, createGroceryList }
 )(withRouter(Mealplan));

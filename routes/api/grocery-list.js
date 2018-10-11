@@ -55,7 +55,7 @@ router.get("/", (req, res) => {
 //@dsc    get grocery list by mealplan
 //@access Public
 router.get("/:mealplan_id", (req, res) => {
-  GroceryList.find({ associatedmealplanid: req.params.mealplan_id }).then(
+  GroceryList.findOne({ associatedmealplanid: req.params.mealplan_id }).then(
     list => {
       res.json(list);
     }
