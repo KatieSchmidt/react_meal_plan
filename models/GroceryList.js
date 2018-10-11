@@ -4,6 +4,9 @@ const Schema = mongoose.Schema;
 //create schema
 
 const GroceryListSchema = new Schema({
+  associatedmealplanid: {
+    type: String
+  },
   groceries: [
     {
       ingredient: {

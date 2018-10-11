@@ -18,8 +18,27 @@ router.post("/:mealplan_id", (req, res) => {
           temp.unshift({ ingredient: ingredient.ingredient, quantity: 1 });
         });
       });
-      const list = new GroceryList({ groceries: temp });
-      list.save().then(list => res.json(list));
+      //check if list exists and update if so
+      GroceryList.findOne({
+        associatedmealplanid: req.params.mealplan_id
+      }).then(list => {
+        if (list) {
+          GroceryList.findByIdAndDelete(list._id).then(() => {
+            console.log("old list deleted");
+            const newlist = new GroceryList({
+              associatedmealplanid: req.params.mealplan_id,
+              groceries: temp
+            });
+            newlist.save().then(list => res.json(list));
+          });
+        } else {
+          const newlist = new GroceryList({
+            associatedmealplanid: req.params.mealplan_id,
+            groceries: temp
+          });
+          newlist.save().then(list => res.json(list));
+        }
+      });
     });
 });
 
@@ -32,17 +51,19 @@ router.get("/", (req, res) => {
   });
 });
 
-//@route  GET api/grocery-list/:list_id
-//@dsc    get grocery lists
+//@route  GET api/grocery-list/:mealplan_id
+//@dsc    get grocery list by mealplan
 //@access Public
-router.get("/:list_id", (req, res) => {
-  GroceryList.findById(req.params.list_id).then(list => {
-    res.json(list);
-  });
+router.get("/:mealplan_id", (req, res) => {
+  GroceryList.find({ associatedmealplanid: req.params.mealplan_id }).then(
+    list => {
+      res.json(list);
+    }
+  );
 });
 
 //@route  DELETE api/grocery-list/:list_id
-//@dsc    get grocery lists
+//@dsc    delete grocery list by id
 //@access Public
 router.delete("/:list_id", (req, res) => {
   GroceryList.findByIdAndRemove(req.params.list_id)
