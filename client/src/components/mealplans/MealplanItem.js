@@ -27,10 +27,12 @@ class MealplanItem extends Component {
 
     return (
       <div className="mealplan-item-component">
+        <Link to={`/meal-plan/${mealplan._id}`} className="float-right">
+          <i className="fas fa-edit" />
+        </Link>
         <h2>{mealplan.planname}</h2>
         {totalcaloriesInfo}
         {mealplansInfo}
-        <Link to={`/meal-plan/${mealplan._id}`}>Edit Mealplan</Link>
       </div>
     );
   }

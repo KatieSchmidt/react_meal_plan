@@ -18,11 +18,33 @@ export const createGroceryList = (mealplan_id, history) => dispatch => {
 export const getGroceryList = mealplan_id => dispatch => {
   axios
     .get(`/api/grocery-list/${mealplan_id}`)
-    .then(res => dispatch(getGroceryList(mealplan_id)))
+    .then(res =>
+      dispatch({
+        type: GET_GROCERY_LIST,
+        payload: res.data
+      })
+    )
     .catch(err =>
       dispatch({
         type: GET_GROCERY_LIST,
-        payload: `there was an error getting the grocery list`
+        payload: err
       })
     );
 };
+
+// export const getMealplanById = mealplan_id => dispatch => {
+//   axios
+//     .get(`/api/meal-plan/${mealplan_id}`)
+//     .then(res =>
+//       dispatch({
+//         type: GET_MEALPLAN_BY_ID,
+//         payload: res.data
+//       })
+//     )
+//     .catch(err =>
+//       dispatch({
+//         type: GET_MEALPLAN_BY_ID,
+//         payload: null
+//       })
+//     );
+// };

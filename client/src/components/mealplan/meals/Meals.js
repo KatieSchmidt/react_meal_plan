@@ -25,7 +25,7 @@ class Meals extends Component {
     let mealItems;
     if (meals) {
       mealItems = meals.map(meal => (
-        <div className="meal-items col m-2">
+        <div className="meal-items col m-2" key={meal._id + "mealItemDiv"}>
           <MealItem meal={meal} />
           <button
             className="add-meal-button"

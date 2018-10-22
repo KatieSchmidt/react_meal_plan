@@ -16,7 +16,6 @@ export default function(state = initialState, action) {
         ...state,
         grocerylist: action.payload
       };
-
     default:
       return state;
   }

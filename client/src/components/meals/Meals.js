@@ -13,7 +13,9 @@ class Meals extends Component {
     const { meals } = this.props.meal;
     let mealItems;
     if (meals) {
-      mealItems = meals.map(meal => <MealItem key={meal._id} meal={meal} />);
+      mealItems = meals.map(meal => (
+        <MealItem key={meal._id + "mealItem"} meal={meal} />
+      ));
     }
     return (
       <div>

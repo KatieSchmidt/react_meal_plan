@@ -16,7 +16,6 @@ class Mealplan extends Component {
       this.props.getMealplanById(this.props.match.params.mealplan_id);
     }
   }
-  componentWillReceiveProps() {}
 
   onDeleteMealplanClick() {
     this.props.deleteMealplan(
@@ -46,28 +45,32 @@ class Mealplan extends Component {
     } else {
       mealplanContent = (
         <div>
-          <h1>
-            {mealplan.planname.toUpperCase()} - {mealplan.totalcalories}{" "}
-            Calories
-          </h1>
-          <button
-            className=" ml-2 btn btn-sm btn-danger"
-            onClick={this.onDeleteMealplanClick.bind(this)}
-          >
-            Delete
-          </button>
-          <button
-            className=" ml-2 btn btn-sm btn-warning"
-            onClick={this.onCreateGroceryListClick.bind(this)}
-          >
-            Get Grocery List
-          </button>
+          <div className="text-center">
+            <h1>
+              {mealplan.planname.toUpperCase()} - {mealplan.totalcalories}{" "}
+              Calories
+            </h1>
+          </div>
+          <div className="text-center">
+            <button
+              className=" ml-2 btn btn-sm btn-danger"
+              onClick={this.onDeleteMealplanClick.bind(this)}
+            >
+              Delete
+            </button>
+            <button
+              className=" ml-2 btn btn-sm btn-warning"
+              onClick={this.onCreateGroceryListClick.bind(this)}
+            >
+              Get Grocery List
+            </button>
+          </div>
         </div>
       );
 
       mealContent = mealplan.meals.map(meal => {
         return (
-          <li className="text-center">
+          <li className="text-center" key={meal._id + "meal"}>
             {meal.mealname}
             <button
               className="m-1 btn btn-sm btn-danger"

@@ -66,7 +66,11 @@ router.post("/:mealplan_id/:meal_id", (req, res) => {
 router.delete("/:plan_id", (req, res) => {
   MealPlan.findByIdAndRemove(req.params.plan_id)
     .then(() => {
-      res.json({ success: true });
+      GroceryList.findOneAndRemove({
+        associatedmealplanid: req.params.plan_id
+      }).then(() => {
+        res.json({ success: true });
+      });
     })
     .catch(err =>
       res

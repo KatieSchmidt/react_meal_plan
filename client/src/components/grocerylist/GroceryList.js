@@ -1,10 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getGroceryList } from "../../actions/grocerylistActions";
+import {
+  createGroceryList,
+  getGroceryList
+} from "../../actions/grocerylistActions";
+import { withRouter } from "react-router-dom";
 
 class GroceryList extends Component {
-  componentWillReceiveProps() {}
+  componentDidMount() {
+    if (this.props.match.params.mealplan_id) {
+      this.props.createGroceryList(this.props.match.params.meal_id);
+    }
+  }
+  getDerivedStateFromProps() {}
 
   render() {
     const { grocerylist } = this.props.grocerylist;
@@ -14,7 +23,11 @@ class GroceryList extends Component {
       listItems = <p>No groceries found</p>;
     } else {
       listItems = grocerylist.groceries.map(groceryItem => {
-        return <li>{groceryItem.ingredient}</li>;
+        return (
+          <li key={groceryItem._id + "groceryItem"}>
+            {groceryItem.ingredient}
+          </li>
+        );
       });
     }
 
@@ -28,7 +41,7 @@ class GroceryList extends Component {
 }
 
 GroceryList.propTypes = {
-  getGroceryList: PropTypes.func.isRequired,
+  createGroceryList: PropTypes.func.isRequired,
   grocerylist: PropTypes.object.isRequired
 };
 
@@ -38,5 +51,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getGroceryList }
-)(GroceryList);
+  { createGroceryList, getGroceryList }
+)(withRouter(GroceryList));
