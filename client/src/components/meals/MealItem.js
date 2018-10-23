@@ -33,7 +33,10 @@ class MealItem extends Component {
         <h2>{meal.mealname}</h2>
         {caloriesInfo}
         {ingredientsInfo}
-        <Link to={`/meals/${meal._id}`}>Edit Meal</Link>
+        <Link to={`/meals/${meal._id}`}>
+          <i className="fas fa-edit float-right ml-2" />
+        </Link>
+        <i className="far fa-trash-alt float-right" />
       </div>
     );
   }

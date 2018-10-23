@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import {
   getMealById,
   deleteIngredient,
@@ -69,4 +70,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getMealById, deleteIngredient, deleteMeal }
-)(Meal);
+)(withRouter(Meal));

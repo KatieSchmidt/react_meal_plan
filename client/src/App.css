@@ -1,7 +1,8 @@
 .meal-item-component {
   border: solid black 1px;
   margin: 2em;
-  padding: 0.5em;
+  padding: 2em;
+  box-shadow: 2.5px 5px 4px #888888;
 }
 .meal-item-component h2,
 h3 {
@@ -11,7 +12,8 @@ h3 {
 .mealplan-item-component {
   border: solid black 1px;
   margin: 2em;
-  padding: 0.5em;
+  padding: 2em;
+  box-shadow: 2.5px 5px 4px #888888;
 }
 .mealplan-item-component h2,
 h3,
@@ -23,6 +25,7 @@ h4 {
   text-align: center;
   border: solid black 1px;
   padding: 0.5em;
+  box-shadow: 2.5px 5px 4px #888888;
 }
 
 .total-calories {
@@ -34,4 +37,15 @@ h4 {
 
 h1 {
   text-align: center;
+}
+
+.lifted-navbar {
+  box-shadow: 5px 10px 8px #888888;
+}
+
+.create-meal-component {
+  border: solid black 1px;
+  margin: 2em;
+  padding: 2em;
+  box-shadow: 2.5px 5px 4px #888888;
 }

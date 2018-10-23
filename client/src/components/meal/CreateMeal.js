@@ -28,7 +28,7 @@ class CreateMeal extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="text-center create-meal-component">
         <h1>Create a Meal</h1>
         <form onSubmit={this.onSubmit}>
           <input

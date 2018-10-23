@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getMeals } from "../../actions/mealActions";
 import MealItem from "./MealItem";
+import CreateMeal from "../meal/CreateMeal";
 
 class Meals extends Component {
   componentDidMount() {
@@ -19,6 +20,7 @@ class Meals extends Component {
     }
     return (
       <div>
+        <CreateMeal />
         <div>{mealItems}</div>
       </div>
     );

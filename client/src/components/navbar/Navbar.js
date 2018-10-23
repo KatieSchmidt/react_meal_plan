@@ -5,7 +5,7 @@ class Navbar extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+        <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4 lifted-navbar">
           <div className="container">
             <Link className="navbar-brand" to="/">
               Meal Planner
