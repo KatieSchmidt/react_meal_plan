@@ -50,7 +50,7 @@ class AddIngredient extends Component {
             onChange={this.onChange}
             className="m-2"
           />
-          <button type="submit" className="m-2">
+          <button type="submit" className="m-2 btn btn-success">
             Add Ingredient
           </button>
         </form>

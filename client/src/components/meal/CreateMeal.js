@@ -41,7 +41,7 @@ class CreateMeal extends Component {
             onChange={this.onChange}
             info="name your meal, you can add ingredients and calories later"
           />
-          <button type="submit" className="m-2">
+          <button type="submit" className="m-2 btn btn-success">
             Create Meal
           </button>
         </form>

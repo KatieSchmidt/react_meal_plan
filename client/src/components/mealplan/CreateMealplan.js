@@ -33,13 +33,13 @@ class CreateMealplan extends Component {
         <h1>Create a Mealplan</h1>
         <form onSubmit={this.onSubmit}>
           <input
-            placeholder=" * Mealplan Name"
+            placeholder="Mealplan Name"
             name="planname"
             value={this.state.planname}
             onChange={this.onChange}
             info="name your mealplan a day is a good idea. like monday"
           />
-          <button type="submit" className="m-2">
+          <button type="submit" className="m-2 btn btn-success">
             Create Mealplan
           </button>
         </form>

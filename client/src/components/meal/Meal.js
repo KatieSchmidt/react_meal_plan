@@ -32,23 +32,29 @@ class Meal extends Component {
       mealContent = <h1>{meal.mealname.toUpperCase()}</h1>;
       mealIngredients = meal.ingredients.map(ingredient => {
         return (
-          <li key={ingredient._id}>
-            {ingredient.ingredient} - {ingredient.calories}
+          <li key={ingredient._id} className="m-2">
             <button
+              className="m-1 btn btn-sm btn-danger"
               onClick={this.onDeleteIngredientClick.bind(this, ingredient._id)}
             >
-              Delete
+              <i className="fa fa-times" />
             </button>
+            {ingredient.ingredient} - {ingredient.calories}
           </li>
         );
       });
     }
     return (
-      <div>
+      <div className="text-center">
         {mealContent}
-        <button onClick={this.onDeleteMealClick.bind(this)}>Delete Meal</button>
-        <ul>{mealIngredients}</ul>
+        <ul className="list-unstyled">{mealIngredients}</ul>
         <AddIngredient meal={this.props.meal} />
+        <button
+          onClick={this.onDeleteMealClick.bind(this)}
+          className="btn btn-sm btn-danger"
+        >
+          Delete Meal
+        </button>
       </div>
     );
   }
