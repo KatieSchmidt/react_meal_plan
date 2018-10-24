@@ -9,7 +9,7 @@ class AddIngredient extends Component {
     super(props);
     this.state = {
       ingredient: "",
-      calories: 0
+      calories: ""
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -29,11 +29,11 @@ class AddIngredient extends Component {
       calories: this.state.calories
     };
     this.props.addIngredient(meal_id, ingredientData, this.props.history);
-    this.setState({ ingredient: "", calories: 0 });
+    this.setState({ ingredient: "", calories: "" });
   }
   render() {
     return (
-      <div>
+      <div className="text-center add-ingredient-component">
         <h3>Add Ingredients</h3>
         <form onSubmit={this.onSubmit}>
           <input
@@ -41,14 +41,18 @@ class AddIngredient extends Component {
             name="ingredient"
             value={this.state.ingredient}
             onChange={this.onChange}
+            className="m-2"
           />
           <input
             placeholder="Calories"
             name="calories"
             value={this.state.calories}
             onChange={this.onChange}
+            className="m-2"
           />
-          <button type="submit">Add Ingredient</button>
+          <button type="submit" className="m-2">
+            Add Ingredient
+          </button>
         </form>
       </div>
     );
