@@ -15,7 +15,7 @@ class Meals extends Component {
     let mealItems;
     if (meals) {
       mealItems = meals.map(meal => (
-        <MealItem key={meal._id + "mealItem"} meal={meal} />
+        <MealItem meal={meal} key={meal._id + "mealItem"} />
       ));
     }
     return (

@@ -22,7 +22,11 @@ const MealSchema = new Schema({
         required: true
       }
     }
-  ]
+  ],
+  dateAdded: {
+    type: Date,
+    default: Date.now()
+  }
 });
 
 module.exports = Meal = mongoose.model("meals", MealSchema);

@@ -26,14 +26,6 @@ class Navbar extends Component {
                     {" "}
                     Meals
                   </Link>
-                  <Link className="nav-link" to="/create-meal">
-                    {" "}
-                    Create Meal
-                  </Link>
-                  <Link className="nav-link" to="/create-mealplan">
-                    {" "}
-                    Create Mealplan
-                  </Link>
                   <Link className="nav-link" to="/meal-plan">
                     {" "}
                     Mealplans

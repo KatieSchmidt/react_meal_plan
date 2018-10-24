@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
+import { deleteMealplan } from "../../actions/mealplanActions";
 
 class MealplanItem extends Component {
+  onDeleteMealplanClick(id) {
+    this.props.deleteMealplan(id, this.props.history);
+  }
   render() {
     const { mealplan } = this.props;
     let mealplansInfo;
@@ -30,6 +37,9 @@ class MealplanItem extends Component {
         <Link to={`/meal-plan/${mealplan._id}`} className="float-right">
           <i className="fas fa-edit" />
         </Link>
+        <button onClick={this.onDeleteMealplanClick.bind(this, mealplan._id)}>
+          Delete Mealplan
+        </button>
         <h2>{mealplan.planname}</h2>
         {totalcaloriesInfo}
         {mealplansInfo}
@@ -38,4 +48,12 @@ class MealplanItem extends Component {
   }
 }
 
-export default MealplanItem;
+MealplanItem.propTypes = {
+  deleteMealplan: PropTypes.func.isRequired,
+  meal: PropTypes.object.isRequired
+};
+
+export default connect(
+  null,
+  { deleteMealplan }
+)(withRouter(MealplanItem));

@@ -25,6 +25,9 @@ class CreateMeal extends Component {
       mealname: this.state.mealname
     };
     this.props.createMeal(mealData, this.props.history);
+    this.setState({
+      mealname: ""
+    });
   }
   render() {
     return (
@@ -38,7 +41,9 @@ class CreateMeal extends Component {
             onChange={this.onChange}
             info="name your meal, you can add ingredients and calories later"
           />
-          <button type="submit">Create Meal</button>
+          <button type="submit" className="m-2">
+            Create Meal
+          </button>
         </form>
       </div>
     );

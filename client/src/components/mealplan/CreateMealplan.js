@@ -25,10 +25,11 @@ class CreateMealplan extends Component {
       planname: this.state.planname
     };
     this.props.createMealplan(mealData, this.props.history);
+    this.setState({ planname: "" });
   }
   render() {
     return (
-      <div>
+      <div className="create-mealplan-component text-center">
         <h1>Create a Mealplan</h1>
         <form onSubmit={this.onSubmit}>
           <input
@@ -38,7 +39,9 @@ class CreateMealplan extends Component {
             onChange={this.onChange}
             info="name your mealplan a day is a good idea. like monday"
           />
-          <button type="submit">Create Mealplan</button>
+          <button type="submit" className="m-2">
+            Create Mealplan
+          </button>
         </form>
       </div>
     );

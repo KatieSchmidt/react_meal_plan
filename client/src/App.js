@@ -21,7 +21,6 @@ class App extends Component {
           <div>
             <Navbar />
             <Route exact path="/meals" component={Meals} />
-            <Route exact path="/create-meal" component={CreateMeal} />
             <Route exact path="/meals/:meal_id" component={Meal} />
             <Route
               exact
@@ -30,7 +29,6 @@ class App extends Component {
             />
 
             <Route exact path="/meal-plan" component={Mealplans} />
-            <Route exact path="/create-mealplan" component={CreateMealplan} />
             <Route exact path="/meal-plan/:mealplan_id" component={Mealplan} />
             <Route
               exact

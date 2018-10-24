@@ -16,8 +16,6 @@ class Meal extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {}
-
   onDeleteMealClick() {
     this.props.deleteMeal(this.props.match.params.meal_id, this.props.history);
   }
