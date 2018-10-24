@@ -29,6 +29,7 @@ class AddIngredient extends Component {
       calories: this.state.calories
     };
     this.props.addIngredient(meal_id, ingredientData, this.props.history);
+    this.setState({ ingredient: "", calories: 0 });
   }
   render() {
     return (

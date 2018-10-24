@@ -2,7 +2,6 @@ import axios from "axios";
 import {
   GET_MEALPLANS,
   GET_MEALPLAN_BY_ID,
-  CREATE_MEALPLAN,
   ADD_MEAL_TO_MEALPLAN
 } from "./types";
 
