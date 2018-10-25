@@ -40,6 +40,9 @@ class Mealplan extends Component {
     const { mealplan } = this.props.mealplan;
     let mealplanContent;
     let mealContent;
+    let noMealContent;
+    let mealsInfo;
+
     if (!mealplan) {
       mealplanContent = <div>Mealplan Not Found</div>;
     } else {
@@ -68,25 +71,35 @@ class Mealplan extends Component {
         </div>
       );
 
-      mealContent = mealplan.meals.map(meal => {
-        return (
-          <li className="text-center" key={meal._id + "meal"}>
-            {meal.mealname}
-            <button
-              className="m-1 btn btn-sm btn-danger"
-              onClick={this.onDeleteMealFromMealplanClick.bind(this, meal._id)}
-            >
-              <i className="fa fa-times" />
-            </button>
-          </li>
+      if (mealplan.meals.length > 0) {
+        mealContent = mealplan.meals.map(meal => {
+          return (
+            <li className="text-center" key={meal._id + "meal"}>
+              {meal.mealname}
+              <button
+                className="m-1 btn btn-sm btn-danger"
+                onClick={this.onDeleteMealFromMealplanClick.bind(
+                  this,
+                  meal._id
+                )}
+              >
+                <i className="fa fa-times" />
+              </button>
+            </li>
+          );
+        });
+      } else {
+        noMealContent = (
+          <li className="text-center">There are no meals yet.</li>
         );
-      });
+      }
     }
+
     return (
       <div>
         {mealplanContent}
         <h3>Current Meals In This Mealplan</h3>
-        <ul className="list-unstyled">{mealContent}</ul>
+        <ul className="list-unstyled">{mealContent || noMealContent}</ul>
         <h3>Add Meals To Your Plan</h3>
         <Meals />
       </div>

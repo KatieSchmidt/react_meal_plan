@@ -37,7 +37,10 @@ class MealplanItem extends Component {
         <Link to={`/meal-plan/${mealplan._id}`} className="float-right">
           <i className="fas fa-edit" />
         </Link>
-        <button onClick={this.onDeleteMealplanClick.bind(this, mealplan._id)}>
+        <button
+          onClick={this.onDeleteMealplanClick.bind(this, mealplan._id)}
+          className="btn btn-sm btn-danger"
+        >
           Delete Mealplan
         </button>
         <h2>{mealplan.planname}</h2>

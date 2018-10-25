@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { getMeals } from "../../../actions/mealActions";
 import { addMealToMealplan } from "../../../actions/mealplanActions";
 import MealItem from "./MealItem";
@@ -35,10 +35,18 @@ class Meals extends Component {
           </button>
         </div>
       ));
+    } else {
+      mealItems = (
+        <button className="text-center btn btn-success add-meal-link-button">
+          <Link to="/meals" className="add-meal-link-button ">
+            Create Meal
+          </Link>
+        </button>
+      );
     }
     return (
       <div className="container">
-        <div className="row">{mealItems}</div>
+        <div className="text-center">{mealItems}</div>
       </div>
     );
   }

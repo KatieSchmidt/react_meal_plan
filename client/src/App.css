@@ -63,3 +63,10 @@ h1 {
   padding: 2em;
   box-shadow: 2.5px 5px 4px #888888;
 }
+
+.add-meal-link-button:link,
+.add-meal-link-button:visited,
+.add-meal-link-button:hover,
+.add-meal-link-button:active {
+  color: white;
+}
