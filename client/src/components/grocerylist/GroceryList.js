@@ -10,10 +10,12 @@ import { withRouter } from "react-router-dom";
 class GroceryList extends Component {
   componentDidMount() {
     if (this.props.match.params.mealplan_id) {
-      this.props.createGroceryList(this.props.match.params.meal_id);
+      return this.props.createGroceryList(
+        this.props.match.params.mealplan_id,
+        this.props.history
+      );
     }
   }
-  getDerivedStateFromProps() {}
 
   render() {
     const { grocerylist } = this.props.grocerylist;
