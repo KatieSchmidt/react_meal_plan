@@ -21,6 +21,7 @@ export const getMeals = () => dispatch => {
 
 //create meal
 export const createMeal = (mealName, history) => dispatch => {
+  //post to api
   axios.post("/api/meals", mealName).then(res => dispatch(getMeals()));
 };
 
@@ -69,11 +70,6 @@ export const deleteIngredient = (meal_id, ing_id) => dispatch => {
       })
     );
 };
-
-// //delete meal
-// export const deleteMeal = (meal_id, history) => dispatch => {
-//   axios.delete(`/api/meals/${meal_id}`).then(res => dispatch(getMeals()));
-// };
 
 //delete meal
 export const deleteMeal = (meal_id, history) => dispatch => {

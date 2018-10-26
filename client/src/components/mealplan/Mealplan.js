@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import {
   getMealplanById,
   deleteMealplan,
@@ -41,7 +41,6 @@ class Mealplan extends Component {
     let mealplanContent;
     let mealContent;
     let noMealContent;
-    let mealsInfo;
 
     if (!mealplan) {
       mealplanContent = <div>Mealplan Not Found</div>;
@@ -101,6 +100,9 @@ class Mealplan extends Component {
         <h3>Current Meals In This Mealplan</h3>
         <ul className="list-unstyled">{mealContent || noMealContent}</ul>
         <h3>Add Meals To Your Plan</h3>
+        <Link to={`/meals`} className="text-center">
+          <p>Meal Not listed? Create meal now!</p>
+        </Link>
         <Meals />
       </div>
     );

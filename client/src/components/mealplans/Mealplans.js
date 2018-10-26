@@ -14,9 +14,12 @@ class Mealplans extends Component {
     const { mealplans } = this.props.mealplan;
     let mealplanItems;
     if (mealplans) {
-      mealplanItems = mealplans.map(mealplan => (
-        <MealplanItem key={mealplan._id} mealplan={mealplan} />
-      ));
+      mealplanItems = mealplans
+        .slice(0)
+        .reverse()
+        .map(mealplan => (
+          <MealplanItem key={mealplan._id} mealplan={mealplan} />
+        ));
     }
     return (
       <div>

@@ -25,7 +25,7 @@ class GroceryList extends Component {
       listItems = grocerylist.groceries.map(groceryItem => {
         return (
           <li key={groceryItem._id + "groceryItem"}>
-            {groceryItem.ingredient}
+            {groceryItem.ingredient} : {groceryItem.quantity} Servings
           </li>
         );
       });

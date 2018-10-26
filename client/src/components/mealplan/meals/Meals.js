@@ -10,7 +10,6 @@ class Meals extends Component {
   componentDidMount() {
     this.props.getMeals();
   }
-  componentWillReceiveProps() {}
 
   onAddMealClick(meal_id, history) {
     this.props.addMealToMealplan(

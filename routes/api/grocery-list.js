@@ -18,6 +18,18 @@ router.post("/:mealplan_id", (req, res) => {
           temp.unshift({ ingredient: ingredient.ingredient, quantity: 1 });
         });
       });
+      const ingArr = [];
+      const objArr = [];
+      for (obj of temp) {
+        if (!ingArr.includes(obj.ingredient)) {
+          ingArr.unshift(obj.ingredient);
+          let tempObj = { ingredient: obj.ingredient, quantity: 1 };
+          objArr.unshift(tempObj);
+        } else {
+          let objIndex = ingArr.indexOf(obj.ingredient);
+          objArr[objIndex].quantity += 1;
+        }
+      }
       //check if list exists and update if so
       GroceryList.findOne({
         associatedmealplanid: req.params.mealplan_id
@@ -27,14 +39,14 @@ router.post("/:mealplan_id", (req, res) => {
             console.log("old list deleted");
             const newlist = new GroceryList({
               associatedmealplanid: req.params.mealplan_id,
-              groceries: temp
+              groceries: objArr
             });
             newlist.save().then(list => res.json(list));
           });
         } else {
           const newlist = new GroceryList({
             associatedmealplanid: req.params.mealplan_id,
-            groceries: temp
+            groceries: objArr
           });
           newlist.save().then(list => res.json(list));
         }

@@ -5,9 +5,6 @@ import PropTypes from "prop-types";
 import { deleteMeal, getMealById } from "../../actions/mealActions";
 
 class MealItem extends Component {
-  // componentDidMount() {
-  //   this.props.getMealById(this.props.meal._id);
-  // }
   deleteMeal(id) {
     this.props.deleteMeal(id, this.props.history);
   }

@@ -19,7 +19,9 @@ class App extends Component {
           <div>
             <Navbar />
             <Route exact path="/meals" component={Meals} />
+
             <Route exact path="/meals/:meal_id" component={Meal} />
+
             <Route
               exact
               path="/meals/:meal_id/ingredient"

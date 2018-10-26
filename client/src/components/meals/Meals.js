@@ -14,9 +14,10 @@ class Meals extends Component {
     const { meals } = this.props.meal;
     let mealItems;
     if (meals) {
-      mealItems = meals.map(meal => (
-        <MealItem meal={meal} key={meal._id + "mealItem"} />
-      ));
+      mealItems = meals
+        .slice(0)
+        .reverse()
+        .map(meal => <MealItem meal={meal} key={meal._id + "mealItem"} />);
     }
     return (
       <div>

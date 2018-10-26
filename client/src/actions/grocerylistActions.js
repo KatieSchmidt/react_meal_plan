@@ -31,20 +31,3 @@ export const getGroceryList = mealplan_id => dispatch => {
       })
     );
 };
-
-// export const getMealplanById = mealplan_id => dispatch => {
-//   axios
-//     .get(`/api/meal-plan/${mealplan_id}`)
-//     .then(res =>
-//       dispatch({
-//         type: GET_MEALPLAN_BY_ID,
-//         payload: res.data
-//       })
-//     )
-//     .catch(err =>
-//       dispatch({
-//         type: GET_MEALPLAN_BY_ID,
-//         payload: null
-//       })
-//     );
-// };
