@@ -71,9 +71,9 @@ class Mealplan extends Component {
       );
 
       if (mealplan.meals.length > 0) {
-        mealContent = mealplan.meals.map(meal => {
+        mealContent = mealplan.meals.map((meal, index) => {
           return (
-            <li className="text-center" key={meal._id + "meal"}>
+            <li className="text-center" key={meal._id + "meal" + index}>
               {meal.mealname}
               <button
                 className="m-1 btn btn-sm btn-danger"

@@ -52,8 +52,7 @@ class MealplanItem extends Component {
 }
 
 MealplanItem.propTypes = {
-  deleteMealplan: PropTypes.func.isRequired,
-  meal: PropTypes.object.isRequired
+  deleteMealplan: PropTypes.func.isRequired
 };
 
 export default connect(
