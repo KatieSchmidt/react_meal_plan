@@ -74,19 +74,21 @@ router.get("/:mealplan_id", (req, res) => {
   );
 });
 
-//@route  DELETE api/grocery-list/:list_id/:grocery_id
+//@route  DELETE api/grocery-list/:mealplan_id/:grocery_id
 //@dsc    delete grocery item from grocery list
 //@access Public
-router.delete("/:list_id/:grocery_id", (req, res) => {
-  GroceryList.findById(req.params.list_id).then(list => {
-    let tempItemList = [];
-    for (item of list.groceries) {
-      tempItemList.push("" + item._id);
+router.delete("/:mealplan_id/:grocery_id", (req, res) => {
+  GroceryList.findOne({ associatedmealplanid: req.params.mealplan_id }).then(
+    list => {
+      let tempItemList = [];
+      for (item of list.groceries) {
+        tempItemList.push("" + item._id);
+      }
+      const removeIndex = tempItemList.indexOf("" + req.params.grocery_id);
+      list.groceries.splice(removeIndex, 1);
+      list.save().then(list => res.json(list));
     }
-    const removeIndex = tempItemList.indexOf("" + req.params.grocery_id);
-    list.groceries.splice(removeIndex, 1);
-    list.save().then(list => res.json(list));
-  });
+  );
 });
 
 //@route  DELETE api/grocery-list/:list_id

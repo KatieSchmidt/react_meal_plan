@@ -10,6 +10,7 @@ import AddIngredient from "./components/meal/AddIngredient";
 import Mealplan from "./components/mealplan/Mealplan";
 import Mealplans from "./components/mealplans/Mealplans";
 import GroceryList from "./components/grocerylist/GroceryList";
+import EditGroceryList from "./components/grocerylist/EditGroceryList";
 
 class App extends Component {
   render() {
@@ -34,6 +35,11 @@ class App extends Component {
               exact
               path="/grocery-list/:mealplan_id"
               component={GroceryList}
+            />
+            <Route
+              exact
+              path="/grocery-list/:mealplan_id/edit"
+              component={EditGroceryList}
             />
           </div>
         </Router>

@@ -7,7 +7,7 @@ import {
 } from "../../actions/grocerylistActions";
 import { withRouter } from "react-router-dom";
 
-class GroceryList extends Component {
+class EditGroceryList extends Component {
   componentDidMount() {
     if (this.props.match.params.mealplan_id) {
       return this.props.getGroceryList(
@@ -56,7 +56,7 @@ class GroceryList extends Component {
   }
 }
 
-GroceryList.propTypes = {
+EditGroceryList.propTypes = {
   deleteFromGroceryList: PropTypes.func.isRequired,
   getGroceryList: PropTypes.func.isRequired,
   grocerylist: PropTypes.object.isRequired
@@ -69,4 +69,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getGroceryList, deleteFromGroceryList }
-)(withRouter(GroceryList));
+)(withRouter(EditGroceryList));

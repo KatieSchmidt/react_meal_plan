@@ -31,3 +31,24 @@ export const getGroceryList = mealplan_id => dispatch => {
       })
     );
 };
+
+//delete item from grocery list
+export const deleteFromGroceryList = (
+  mealplan_id,
+  ingredient_id
+) => dispatch => {
+  axios
+    .delete(`/api/grocery-list/${mealplan_id}/${ingredient_id}`)
+    .then(res =>
+      dispatch({
+        type: GET_GROCERY_LIST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_GROCERY_LIST,
+        payload: err
+      })
+    );
+};
