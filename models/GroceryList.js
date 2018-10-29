@@ -14,6 +14,9 @@ const GroceryListSchema = new Schema({
       },
       quantity: {
         type: Number
+      },
+      measureunit: {
+        type: String
       }
     }
   ]

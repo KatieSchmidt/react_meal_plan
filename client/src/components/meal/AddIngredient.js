@@ -9,7 +9,8 @@ class AddIngredient extends Component {
     super(props);
     this.state = {
       ingredient: "",
-      calories: ""
+      calories: "",
+      measureunit: ""
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -26,10 +27,11 @@ class AddIngredient extends Component {
     const meal_id = this.props.meal.meal._id;
     const ingredientData = {
       ingredient: this.state.ingredient,
-      calories: this.state.calories
+      calories: this.state.calories,
+      measureunit: this.state.measureunit
     };
     this.props.addIngredient(meal_id, ingredientData, this.props.history);
-    this.setState({ ingredient: "", calories: "" });
+    this.setState({ ingredient: "", calories: "", measureunit: "" });
   }
   render() {
     return (
@@ -47,6 +49,13 @@ class AddIngredient extends Component {
             placeholder="Calories"
             name="calories"
             value={this.state.calories}
+            onChange={this.onChange}
+            className="m-2"
+          />
+          <input
+            placeholder="Tbsp, Cup, Oz, Etc..."
+            name="measureunit"
+            value={this.state.measureunit}
             onChange={this.onChange}
             className="m-2"
           />

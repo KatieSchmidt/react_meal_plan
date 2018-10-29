@@ -63,6 +63,7 @@ router.post("/:meal_id/ingredient", (req, res) => {
   const ingredient = {};
   ingredient.ingredient = req.body.ingredient;
   ingredient.calories = req.body.calories;
+  ingredient.measureunit = req.body.measureunit;
 
   Meal.findById(req.params.meal_id)
     .then(meal => {

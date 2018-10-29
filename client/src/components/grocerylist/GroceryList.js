@@ -40,9 +40,10 @@ class GroceryList extends Component {
                 groceryItem._id
               )}
             >
-              X
+              <i className="fa fa-times" />
             </button>
-            {groceryItem.ingredient} : {groceryItem.quantity} Servings{" "}
+            {groceryItem.ingredient} : {groceryItem.quantity}{" "}
+            {groceryItem.measureunit} ('s)
           </li>
         );
       });

@@ -39,7 +39,7 @@ class Meal extends Component {
             >
               <i className="fa fa-times" />
             </button>
-            {ingredient.ingredient} - {ingredient.calories}
+            {ingredient.ingredient} - {ingredient.calories}{" "}
           </li>
         );
       });
@@ -47,7 +47,7 @@ class Meal extends Component {
     return (
       <div className="text-center">
         {mealContent}
-        <ul className="list-unstyled">{mealIngredients}</ul>
+        <ul className="list-unstyled text-left">{mealIngredients}</ul>
         <AddIngredient meal={this.props.meal} />
         <button
           onClick={this.onDeleteMealClick.bind(this)}

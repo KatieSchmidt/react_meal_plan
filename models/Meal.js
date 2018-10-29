@@ -20,6 +20,10 @@ const MealSchema = new Schema({
       calories: {
         type: Number,
         required: true
+      },
+      measureunit: {
+        type: String,
+        required: true
       }
     }
   ],

@@ -15,7 +15,11 @@ router.post("/:mealplan_id", (req, res) => {
       const temp = [];
       mealplan.meals.map(meal => {
         meal.ingredients.map(ingredient => {
-          temp.unshift({ ingredient: ingredient.ingredient, quantity: 1 });
+          temp.unshift({
+            ingredient: ingredient.ingredient,
+            quantity: 1,
+            measureunit: ingredient.measureunit
+          });
         });
       });
       const ingArr = [];
@@ -23,7 +27,11 @@ router.post("/:mealplan_id", (req, res) => {
       for (obj of temp) {
         if (!ingArr.includes(obj.ingredient)) {
           ingArr.unshift(obj.ingredient);
-          let tempObj = { ingredient: obj.ingredient, quantity: 1 };
+          let tempObj = {
+            ingredient: obj.ingredient,
+            quantity: 1,
+            measureunit: obj.measureunit
+          };
           objArr.unshift(tempObj);
         } else {
           let objIndex = ingArr.indexOf(obj.ingredient);
