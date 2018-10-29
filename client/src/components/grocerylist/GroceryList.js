@@ -32,9 +32,9 @@ class GroceryList extends Component {
     } else {
       listItems = grocerylist.groceries.map(groceryItem => {
         return (
-          <li key={groceryItem._id + "groceryItem"}>
-            {groceryItem.ingredient} : {groceryItem.quantity} Servings{" "}
+          <li key={groceryItem._id + "groceryItem"} className="list-unstyled">
             <button
+              className="btn btn-sm btn-danger m-2"
               onClick={this.onDeleteFromGroceryListClick.bind(
                 this,
                 groceryItem._id
@@ -42,6 +42,7 @@ class GroceryList extends Component {
             >
               X
             </button>
+            {groceryItem.ingredient} : {groceryItem.quantity} Servings{" "}
           </li>
         );
       });
