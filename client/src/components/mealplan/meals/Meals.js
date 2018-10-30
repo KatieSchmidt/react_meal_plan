@@ -27,7 +27,7 @@ class Meals extends Component {
         <div className="meal-items col m-2" key={meal._id + "mealItemDiv"}>
           <MealItem meal={meal} />
           <button
-            className="add-meal-button"
+            className="add-meal-button btn btn-success"
             onClick={this.onAddMealClick.bind(this, meal._id)}
           >
             Add Meal
