@@ -30,6 +30,10 @@ class Navbar extends Component {
                     {" "}
                     Mealplans
                   </Link>
+                  <Link className="nav-link" to="/week-plan">
+                    {" "}
+                    Weekplans
+                  </Link>
                 </li>
               </ul>
             </div>

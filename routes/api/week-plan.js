@@ -83,4 +83,19 @@ router.delete("/:week_plan_id/:mealplan_id", (req, res) => {
   });
 });
 
+//@route  DELETE api/week-plan/:week_plan_id
+//@dsc    delete weekplan by id
+//@access Public
+router.delete("/:week_plan_id", (req, res) => {
+  WeekPlan.findByIdAndRemove(req.params.week_plan_id)
+    .then(() => {
+      res.json({ success: true });
+    })
+    .catch(err =>
+      res
+        .status(404)
+        .json({ noWeekPlanFound: "No week plan found with that id" })
+    );
+});
+
 module.exports = router;
