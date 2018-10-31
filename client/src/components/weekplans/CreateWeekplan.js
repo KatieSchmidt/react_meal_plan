@@ -33,11 +33,10 @@ class CreateWeekplan extends Component {
         <h1>Create a Weekplan</h1>
         <form onSubmit={this.onSubmit}>
           <input
-            placeholder="Weekplan Name"
+            type="week"
             name="planname"
             value={this.state.planname}
             onChange={this.onChange}
-            info="name your weekly plan. Like week one or week two"
           />
           <button type="submit" className="m-2 btn btn-success">
             Create Weekplan

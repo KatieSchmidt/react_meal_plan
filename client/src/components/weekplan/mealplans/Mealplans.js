@@ -53,8 +53,8 @@ class Mealplans extends Component {
 
 Mealplans.propTypes = {
   addMealplanToWeekplan: PropTypes.func.isRequired,
-  getMealplanss: PropTypes.func.isRequired,
-  mealplans: PropTypes.object.isRequired
+  getMealplans: PropTypes.func.isRequired,
+  mealplan: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
