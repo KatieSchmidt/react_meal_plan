@@ -14,7 +14,7 @@ export const createGroceryList = (mealplan_id, history) => dispatch => {
     .then(res => history.push(`/grocery-list/${mealplan_id}`));
 };
 
-//create grocery list from mealplan
+//get grocery list from mealplan
 export const getGroceryList = mealplan_id => dispatch => {
   axios
     .get(`/api/grocery-list/${mealplan_id}`)

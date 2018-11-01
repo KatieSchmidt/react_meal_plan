@@ -8,6 +8,7 @@ import {
   deleteMealplanFromWeekplan
 } from "../../actions/weekplanActions";
 import Mealplans from "./mealplans/Mealplans";
+import { createWeeklyGroceryList } from "../../actions/weeklygrocerylistActions";
 
 class Weekplan extends Component {
   componentDidMount() {
@@ -29,6 +30,14 @@ class Weekplan extends Component {
       this.props.history
     );
   }
+
+  onCreateWeeklyGroceryListClick() {
+    this.props.createWeeklyGroceryList(
+      this.props.match.params.week_plan_id,
+      this.props.history
+    );
+  }
+
   render() {
     const { weekplan } = this.props.weekplan;
     let weekplanContent;
@@ -52,6 +61,12 @@ class Weekplan extends Component {
               onClick={this.onDeleteWeekplanClick.bind(this)}
             >
               Delete
+            </button>
+            <button
+              className=" ml-2 btn btn-sm btn-warning"
+              onClick={this.onCreateWeeklyGroceryListClick.bind(this)}
+            >
+              Get Grocery List
             </button>
           </div>
         </div>
@@ -100,7 +115,8 @@ Weekplan.propTypes = {
   deleteMealplanFromWeekplan: PropTypes.func.isRequired,
   deleteWeekplan: PropTypes.func.isRequired,
   getWeekplanById: PropTypes.func.isRequired,
-  weekplan: PropTypes.object.isRequired
+  weekplan: PropTypes.object.isRequired,
+  createWeeklyGroceryList: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -109,5 +125,10 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getWeekplanById, deleteWeekplan, deleteMealplanFromWeekplan }
+  {
+    getWeekplanById,
+    deleteWeekplan,
+    deleteMealplanFromWeekplan,
+    createWeeklyGroceryList
+  }
 )(withRouter(Weekplan));

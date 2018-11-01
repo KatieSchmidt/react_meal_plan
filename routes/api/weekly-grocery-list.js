@@ -86,12 +86,12 @@ router.get("/", (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
-//@route  GET api/weekly-grocery-list/:weekly_grocery_list
+//@route  GET api/weekly-grocery-list/:weekplan_id
 //@dsc    get weekly grocery list by weekly grocery list id
 //@access Public
-router.get("/:weekly_grocery_list_id", (req, res) => {
+router.get("/:weekplan_id", (req, res) => {
   const errors = {};
-  WeeklyGroceryList.findById(req.params.weekly_grocery_list_id)
+  WeeklyGroceryList.findOne({ associatedweekplanid: req.params.weekplan_id })
     .then(weeklygrocerylist => {
       if (!weeklygrocerylist) {
         errors.weeklygrocerylist = "this weekly grocery list doesnt exist";
@@ -106,8 +106,10 @@ router.get("/:weekly_grocery_list_id", (req, res) => {
 //@route  DELETE api/weekly-grocery-list/:weekly_grocery_list_id/:grocery_id
 //@dsc    delete grocery item from grocery list
 //@access Public
-router.delete("/:weekly_grocery_list_id/:grocery_id", (req, res) => {
-  WeeklyGroceryList.findById(req.params.weekly_grocery_list_id).then(list => {
+router.delete("/:weekplan_id/:grocery_id", (req, res) => {
+  WeeklyGroceryList.findOne({
+    associatedweekplanid: req.params.weekplan_id
+  }).then(list => {
     let tempItemList = [];
     for (item of list.groceries) {
       tempItemList.push("" + item._id);

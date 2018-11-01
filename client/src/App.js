@@ -13,6 +13,8 @@ import GroceryList from "./components/grocerylist/GroceryList";
 import EditGroceryList from "./components/grocerylist/EditGroceryList";
 import Weekplan from "./components/weekplan/Weekplan";
 import Weekplans from "./components/weekplans/Weekplans";
+import WeeklyGroceryList from "./components/weeklygrocerylist/WeeklyGroceryList";
+import EditWeeklyGroceryList from "./components/weeklygrocerylist/EditWeeklyGroceryList";
 
 class App extends Component {
   render() {
@@ -46,6 +48,16 @@ class App extends Component {
             <Route exact path="/week-plan/" component={Weekplans} />
 
             <Route exact path="/week-plan/:week_plan_id" component={Weekplan} />
+            <Route
+              exact
+              path="/weekly-grocery-list/:week_plan_id"
+              component={WeeklyGroceryList}
+            />
+            <Route
+              exact
+              path="/weekly-grocery-list/:week_plan_id/edit"
+              component={EditWeeklyGroceryList}
+            />
           </div>
         </Router>
       </Provider>
