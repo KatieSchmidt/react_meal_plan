@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Meal = require("../../models/Meal");
 const WeekPlan = require("../../models/WeekPlan");
-const WeeklyGroceryList = require("../../models/GroceryList");
+const WeeklyGroceryList = require("../../models/WeeklyGroceryList");
 
 //@route  POST api/weekly-grocery-list/:week_plan_id
 //@dsc    create weeklygrocerylist from week plan
@@ -52,14 +52,14 @@ router.post("/:week_plan_id", (req, res) => {
         if (list) {
           WeeklyGroceryList.findByIdAndDelete(list._id).then(() => {
             console.log("old list deleted");
-            const newlist = new GroceryList({
+            const newlist = new WeeklyGroceryList({
               associatedweekplanid: req.params.week_plan_id,
               groceries: objArr
             });
             newlist.save().then(list => res.json(list));
           });
         } else {
-          const newlist = new GroceryList({
+          const newlist = new WeeklyGroceryList({
             associatedweekplanid: req.params.week_plan_id,
             groceries: objArr
           });
@@ -86,8 +86,8 @@ router.get("/", (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
-//@route  GET api/weekly-grocery-list/:week_plan_id
-//@dsc    get weekly grocery list by week plan id
+//@route  GET api/weekly-grocery-list/:weekly_grocery_list
+//@dsc    get weekly grocery list by weekly grocery list id
 //@access Public
 router.get("/:weekly_grocery_list_id", (req, res) => {
   const errors = {};
@@ -103,13 +103,11 @@ router.get("/:weekly_grocery_list_id", (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
-//@route  DELETE api/weekly-grocery-list/:week_plan_id/:grocery_id
+//@route  DELETE api/weekly-grocery-list/:weekly_grocery_list_id/:grocery_id
 //@dsc    delete grocery item from grocery list
 //@access Public
-router.delete("/:week_plan_id/:grocery_id", (req, res) => {
-  WeeklyGroceryList.findOne({
-    associatedweekplanid: req.params.week_plan_id
-  }).then(list => {
+router.delete("/:weekly_grocery_list_id/:grocery_id", (req, res) => {
+  WeeklyGroceryList.findById(req.params.weekly_grocery_list_id).then(list => {
     let tempItemList = [];
     for (item of list.groceries) {
       tempItemList.push("" + item._id);
