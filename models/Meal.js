@@ -21,6 +21,10 @@ const MealSchema = new Schema({
         type: Number,
         required: true
       },
+      measureunitquantity: {
+        type: Number,
+        required: true
+      },
       measureunit: {
         type: String,
         required: true

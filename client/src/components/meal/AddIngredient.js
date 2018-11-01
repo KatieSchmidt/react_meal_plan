@@ -10,7 +10,8 @@ class AddIngredient extends Component {
     this.state = {
       ingredient: "",
       calories: "",
-      measureunit: ""
+      measureunit: "",
+      measureunitquantity: ""
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -28,10 +29,16 @@ class AddIngredient extends Component {
     const ingredientData = {
       ingredient: this.state.ingredient,
       calories: this.state.calories,
+      measureunitquantity: this.state.measureunitquantity,
       measureunit: this.state.measureunit
     };
     this.props.addIngredient(meal_id, ingredientData, this.props.history);
-    this.setState({ ingredient: "", calories: "", measureunit: "" });
+    this.setState({
+      ingredient: "",
+      calories: "",
+      measureunit: "",
+      measureunitquantity: ""
+    });
   }
   render() {
     return (
@@ -53,12 +60,27 @@ class AddIngredient extends Component {
             className="m-2"
           />
           <input
-            placeholder="Tbsp, Cup, Oz, Etc..."
+            placeholder="Quantity"
+            name="measureunitquantity"
+            value={this.state.measureunitquantity}
+            onChange={this.onChange}
+            className="m-2"
+          />
+          <select
             name="measureunit"
             value={this.state.measureunit}
             onChange={this.onChange}
             className="m-2"
-          />
+          >
+            <option>Select Unit</option>
+            <option>Cup</option>
+            <option>Tbsp</option>
+            <option>Tsp</option>
+            <option>Ounce</option>
+            <option>Handful</option>
+            <option>Pint</option>
+            <option>Quart</option>
+          </select>
           <button type="submit" className="m-2 btn btn-success">
             Add Ingredient
           </button>

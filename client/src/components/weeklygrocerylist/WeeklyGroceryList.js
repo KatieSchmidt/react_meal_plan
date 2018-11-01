@@ -42,7 +42,8 @@ class WeeklyGroceryList extends Component {
               <i className="fa fa-times" />
             </button>
             {groceryItem.ingredient} : {groceryItem.quantity}{" "}
-            {groceryItem.measureunit} ('s)
+            {groceryItem.measureunit}
+            ('s)
           </li>
         );
       });

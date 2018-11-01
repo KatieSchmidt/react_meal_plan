@@ -23,12 +23,13 @@ router.post("/:week_plan_id", (req, res) => {
           meal.ingredients.map(ingredient => {
             temp.unshift({
               ingredient: ingredient.ingredient,
-              quantity: 1,
+              quantity: Number(ingredient.measureunitquantity),
               measureunit: ingredient.measureunit
             });
           });
         });
       }
+      console.log(temp);
       const ingArr = [];
       const objArr = [];
       for (obj of temp) {
@@ -36,15 +37,16 @@ router.post("/:week_plan_id", (req, res) => {
           ingArr.unshift(obj.ingredient);
           let tempObj = {
             ingredient: obj.ingredient,
-            quantity: 1,
+            quantity: obj.quantity,
             measureunit: obj.measureunit
           };
           objArr.unshift(tempObj);
         } else {
           let objIndex = ingArr.indexOf(obj.ingredient);
-          objArr[objIndex].quantity += 1;
+          objArr[objIndex].quantity += obj.quantity;
         }
       }
+      console.log(objArr);
       //check if list exists and update if so
       WeeklyGroceryList.findOne({
         associatedweekplanid: req.params.week_plan_id
