@@ -29,7 +29,6 @@ router.post("/:week_plan_id", (req, res) => {
           });
         });
       }
-      console.log(temp);
       const ingArr = [];
       const objArr = [];
       for (obj of temp) {
@@ -46,14 +45,12 @@ router.post("/:week_plan_id", (req, res) => {
           objArr[objIndex].quantity += obj.quantity;
         }
       }
-      console.log(objArr);
       //check if list exists and update if so
       WeeklyGroceryList.findOne({
         associatedweekplanid: req.params.week_plan_id
       }).then(list => {
         if (list) {
           WeeklyGroceryList.findByIdAndDelete(list._id).then(() => {
-            console.log("old list deleted");
             const newlist = new WeeklyGroceryList({
               associatedweekplanid: req.params.week_plan_id,
               groceries: objArr

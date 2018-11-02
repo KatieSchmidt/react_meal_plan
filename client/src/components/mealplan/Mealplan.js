@@ -74,7 +74,6 @@ class Mealplan extends Component {
         mealContent = mealplan.meals.map((meal, index) => {
           return (
             <li className="text-center" key={meal._id + "meal" + index}>
-              {meal.mealname}
               <button
                 className="m-1 btn btn-sm btn-danger"
                 onClick={this.onDeleteMealFromMealplanClick.bind(
@@ -84,6 +83,7 @@ class Mealplan extends Component {
               >
                 <i className="fa fa-times" />
               </button>
+              {meal.mealname}
             </li>
           );
         });

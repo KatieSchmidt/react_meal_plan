@@ -39,7 +39,7 @@ class Meal extends Component {
             >
               <i className="fa fa-times" />
             </button>
-            {ingredient.ingredient} - {ingredient.calories}{" "}
+            <b>{ingredient.ingredient}</b> - {ingredient.calories} Calories
           </li>
         );
       });

@@ -44,7 +44,6 @@ router.post("/:mealplan_id", (req, res) => {
       }).then(list => {
         if (list) {
           GroceryList.findByIdAndDelete(list._id).then(() => {
-            console.log("old list deleted");
             const newlist = new GroceryList({
               associatedmealplanid: req.params.mealplan_id,
               groceries: objArr
