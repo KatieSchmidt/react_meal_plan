@@ -11,6 +11,15 @@ class Meals extends Component {
     this.props.getMealsByUser(this.props.auth.user.id);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.auth.isAuthenticated) {
+      this.props.history.push(`/login`);
+    }
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   render() {
     const { meals } = this.props.meal;
     let mealItems;
