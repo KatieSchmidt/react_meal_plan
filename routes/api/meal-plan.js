@@ -31,13 +31,31 @@ router.get("/:plan_id", (req, res) => {
     );
 });
 
+//@route  GET api/meals/usermealplans/:user_id
+//@dsc    get meals by user_id
+//@access Public
+router.get("/usermeaplans/:user_id", (req, res) => {
+  const errors = {};
+  MealPlan.find({ user: req.params.user_id })
+    .then(mealplans => {
+      if (!mealplans) {
+        errors.mealplans = "this user doesnt have any mealplanss";
+        res.status(404).json(errors.mealplans);
+      } else {
+        res.json(mealplans);
+      }
+    })
+    .catch(err => res.status(404).json(err));
+});
+
 //POST ROUTES
 //@route  POST api/meal-plan
 //@dsc    create mealplan
 //@access Public
 router.post("/", (req, res) => {
   const plan = new MealPlan({
-    planname: req.body.planname
+    planname: req.body.planname,
+    user: req.body.user_id
   });
   plan
     .save()

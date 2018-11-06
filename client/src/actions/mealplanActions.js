@@ -42,8 +42,8 @@ export const getMealplanById = mealplan_id => dispatch => {
 };
 
 //create mealplan
-export const createMealplan = (planname, history) => dispatch => {
-  axios.post("/api/meal-plan", planname).then(res => dispatch(getMealplans()));
+export const createMealplan = (planData, history) => dispatch => {
+  axios.post("/api/meal-plan", planData).then(res => dispatch(getMealplans()));
 };
 
 //add meal to mealplan
