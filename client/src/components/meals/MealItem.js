@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 import { deleteMeal, getMealById } from "../../actions/mealActions";
 
 class MealItem extends Component {
-  deleteMeal(id) {
-    this.props.deleteMeal(id, this.props.history);
+  deleteMeal(id, user_id) {
+    this.props.deleteMeal(id, user_id, this.props.history);
   }
   render() {
     const { meal } = this.props;
@@ -45,7 +45,7 @@ class MealItem extends Component {
         </Link>
 
         <div
-          onClick={this.deleteMeal.bind(this, meal._id)}
+          onClick={this.deleteMeal.bind(this, meal._id, meal.user)}
           className="float-right"
         >
           <i className="far fa-trash-alt" />
@@ -57,7 +57,8 @@ class MealItem extends Component {
 
 MealItem.propTypes = {
   deleteMeal: PropTypes.func.isRequired,
-  meal: PropTypes.object.isRequired
+  meal: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 export default connect(

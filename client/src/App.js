@@ -16,6 +16,30 @@ import Weekplans from "./components/weekplans/Weekplans";
 import WeeklyGroceryList from "./components/weeklygrocerylist/WeeklyGroceryList";
 import EditWeeklyGroceryList from "./components/weeklygrocerylist/EditWeeklyGroceryList";
 
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
+import "./App.css";
+
+import jwt_decode from "jwt-decode";
+import setAuthToken from "./utils/setAuthToken";
+import { setCurrentUser, logoutUser } from "./actions/authActions";
+
+if (localStorage.jwtToken) {
+  setAuthToken(localStorage.jwtToken);
+  //decode token and get user info and exp
+  const decoded = jwt_decode(localStorage.jwtToken);
+  //set user and isAuthenticated
+  store.dispatch(setCurrentUser(decoded));
+
+  //check for expired token
+  const currentTime = Date.now() / 1000;
+  if (decoded.exp < currentTime) {
+    //Logout user
+    store.dispatch(logoutUser());
+    window.location.href = "/login";
+  }
+}
+
 class App extends Component {
   render() {
     return (
@@ -23,6 +47,8 @@ class App extends Component {
         <Router>
           <div>
             <Navbar />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/meals" component={Meals} />
 
             <Route exact path="/meals/:meal_id" component={Meal} />

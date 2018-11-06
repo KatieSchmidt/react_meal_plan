@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_MEALS, GET_MEAL_BY_ID } from "./types";
+import { GET_MEALS, GET_MEAL_BY_ID, GET_MEALS_BY_USER } from "./types";
 
 //get meals
 export const getMeals = () => dispatch => {
@@ -19,10 +19,30 @@ export const getMeals = () => dispatch => {
     );
 };
 
+//get meals by user
+export const getMealsByUser = user_id => dispatch => {
+  axios
+    .get(`/api/meals/usermeals/${user_id}`)
+    .then(res =>
+      dispatch({
+        type: GET_MEALS_BY_USER,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_MEALS_BY_USER,
+        payload: err.data
+      })
+    );
+};
+
 //create meal
-export const createMeal = (mealName, history) => dispatch => {
+export const createMeal = (mealData, history) => dispatch => {
   //post to api
-  axios.post("/api/meals", mealName).then(res => dispatch(getMeals()));
+  axios
+    .post("/api/meals", mealData)
+    .then(res => dispatch(getMealsByUser(mealData.user)));
 };
 
 //add ingredients to meal
@@ -72,22 +92,22 @@ export const deleteIngredient = (meal_id, ing_id) => dispatch => {
 };
 
 //delete meal
-export const deleteMeal = (meal_id, history) => dispatch => {
+export const deleteMeal = (meal_id, user_id, history) => dispatch => {
   axios
     .delete(`/api/meals/${meal_id}`)
     .then(res => {
-      dispatch(getMeals());
+      dispatch(getMealsByUser(user_id));
     })
     .then(history.push("/meals"))
     .then(res =>
       dispatch({
-        type: GET_MEALS,
+        type: GET_MEALS_BY_USER,
         payload: res.data
       })
     )
     .catch(err =>
       dispatch({
-        type: GET_MEALS,
+        type: GET_MEALS_BY_USER,
         payload: err.data
       })
     );

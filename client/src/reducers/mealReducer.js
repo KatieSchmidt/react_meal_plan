@@ -2,7 +2,8 @@ import {
   GET_MEALS,
   CREATE_MEAL,
   GET_MEAL_BY_ID,
-  DELETE_MEAL
+  DELETE_MEAL,
+  GET_MEALS_BY_USER
 } from "../actions/types";
 
 const initialState = {
@@ -31,6 +32,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         meal: action.payload
+      };
+    case GET_MEALS_BY_USER:
+      return {
+        ...state,
+        meals: action.payload
       };
     default:
       return state;

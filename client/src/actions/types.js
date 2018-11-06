@@ -3,6 +3,7 @@ export const GET_MEALS = "GET_MEALS";
 export const CREATE_MEAL = "CREATE_MEAL";
 export const GET_MEAL_BY_ID = "GET_MEAL_BY_ID";
 export const DELETE_MEAL = "DELETE_MEAL";
+export const GET_MEALS_BY_USER = "GET_MEALS_BY_USER";
 
 //meal plan action types
 export const GET_MEALPLANS = "GET_MEALPLANS";
@@ -29,3 +30,7 @@ export const DELETE_WEEKPLAN = "DELETE_WEEKPLAN";
 
 export const CREATE_WEEKLY_GROCERY_LIST = "CREATE_WEEKLY_GROCERY_LIST";
 export const GET_WEEKLY_GROCERY_LIST = "GET_WEEKLY_GROCERY_LIST";
+
+//user and profile actions
+export const GET_ERRORS = "GET_ERRORS";
+export const SET_CURRENT_USER = "SET_CURRENT_USER";

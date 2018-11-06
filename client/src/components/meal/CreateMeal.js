@@ -22,7 +22,8 @@ class CreateMeal extends Component {
   onSubmit(e) {
     e.preventDefault();
     const mealData = {
-      mealname: this.state.mealname
+      mealname: this.state.mealname,
+      user: this.props.auth.user.id
     };
     this.props.createMeal(mealData, this.props.history);
     this.setState({
@@ -55,7 +56,8 @@ CreateMeal.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  meal: state.meal
+  meal: state.meal,
+  auth: state.auth
 });
 
 export default connect(
