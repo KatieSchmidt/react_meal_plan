@@ -4,6 +4,10 @@ const Schema = mongoose.Schema;
 //create schema
 
 const MealSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "users"
+  },
   mealname: {
     type: String,
     required: true

@@ -36,6 +36,23 @@ router.get("/:meal_id", (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
+//@route  GET api/meals/usermeals/:user_id
+//@dsc    get meals by user_id
+//@access Public
+router.get("/usermeals/:user_id", (req, res) => {
+  const errors = {};
+  Meal.find({ user: req.params.user_id })
+    .then(meals => {
+      if (!meals) {
+        errors.meals = "this user doesnt have any meals";
+        res.status(404).json(errors.meals);
+      } else {
+        res.json(meals);
+      }
+    })
+    .catch(err => res.status(404).json(err));
+});
+
 //@route  Post api/meals
 //@dsc    create a meal
 //@access Public
@@ -43,6 +60,7 @@ router.post("/", (req, res) => {
   const errors = {};
   const mealFields = {};
   mealFields.mealname = req.body.mealname;
+  mealFields.user = req.body.user;
   Meal.findOne({ mealname: mealFields.mealname })
     .then(meal => {
       if (meal) {
