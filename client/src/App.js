@@ -49,6 +49,7 @@ class App extends Component {
             <Navbar />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+
             <Route exact path="/meals" component={Meals} />
 
             <Route exact path="/meals/:meal_id" component={Meal} />
