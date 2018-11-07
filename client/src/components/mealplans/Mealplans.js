@@ -1,15 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { getMealplans } from "../../actions/mealplanActions";
+import { getMealplansByUser } from "../../actions/mealplanActions";
 import MealplanItem from "./MealplanItem";
 import CreateMealplan from "../mealplan/CreateMealplan";
 
 class Mealplans extends Component {
   componentDidMount() {
-    this.props.getMealplans();
+    this.props.getMealplansByUser(this.props.auth.user.id);
   }
-  componentWillReceiveProps() {}
+
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.auth.isAuthenticated) {
+      this.props.history.push(`/login`);
+    }
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
   render() {
     const { mealplans } = this.props.mealplan;
     let mealplanItems;
@@ -31,16 +40,16 @@ class Mealplans extends Component {
 }
 
 Mealplans.propTypes = {
-  getMealplans: PropTypes.func.isRequired,
-  mealplan: PropTypes.object.isRequired
+  getMealplansByUser: PropTypes.func.isRequired,
+  mealplans: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  getMealplans: PropTypes.func.isrequired,
-  mealplan: state.mealplan
+  mealplan: state.mealplan,
+  auth: state.auth
 });
 
 export default connect(
   mapStateToProps,
-  { getMealplans }
-)(Mealplans);
+  { getMealplansByUser }
+)(withRouter(Mealplans));

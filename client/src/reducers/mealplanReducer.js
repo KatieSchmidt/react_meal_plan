@@ -2,6 +2,7 @@ import {
   GET_MEALPLANS,
   CREATE_MEALPLAN,
   GET_MEALPLAN_BY_ID,
+  GET_MEALPLANS_BY_USER,
   ADD_MEAL_TO_MEALPLAN
 } from "../actions/types";
 
@@ -18,6 +19,11 @@ export default function(state = initialState, action) {
         mealplan: action.payload
       };
     case GET_MEALPLANS:
+      return {
+        ...state,
+        mealplans: action.payload
+      };
+    case GET_MEALPLANS_BY_USER:
       return {
         ...state,
         mealplans: action.payload

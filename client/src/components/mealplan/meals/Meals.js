@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withRouter, Link } from "react-router-dom";
-import { getMeals } from "../../../actions/mealActions";
+import { getMealsByUser } from "../../../actions/mealActions";
 import { addMealToMealplan } from "../../../actions/mealplanActions";
 import MealItem from "./MealItem";
 
 class Meals extends Component {
   componentDidMount() {
-    this.props.getMeals();
+    this.props.getMealsByUser(this.props.auth.user.id);
   }
 
   onAddMealClick(meal_id, history) {
@@ -53,15 +53,16 @@ class Meals extends Component {
 
 Meals.propTypes = {
   addMealToMealplan: PropTypes.func.isRequired,
-  getMeals: PropTypes.func.isRequired,
+  getMealsByUser: PropTypes.func.isRequired,
   meal: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  meal: state.meal
+  meal: state.meal,
+  auth: state.auth
 });
 
 export default connect(
   mapStateToProps,
-  { getMeals, addMealToMealplan }
+  { getMealsByUser, addMealToMealplan }
 )(withRouter(Meals));

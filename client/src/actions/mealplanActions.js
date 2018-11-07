@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   GET_MEALPLANS,
+  GET_MEALPLANS_BY_USER,
   GET_MEALPLAN_BY_ID,
   ADD_MEAL_TO_MEALPLAN
 } from "./types";
@@ -18,6 +19,24 @@ export const getMealplans = () => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_MEALPLANS,
+        payload: err.data
+      })
+    );
+};
+
+//get mealplans
+export const getMealplansByUser = user_id => dispatch => {
+  axios
+    .get(`/api/meal-plan/usermealplans/${user_id}`)
+    .then(res =>
+      dispatch({
+        type: GET_MEALPLANS_BY_USER,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_MEALPLANS_BY_USER,
         payload: err.data
       })
     );
@@ -43,7 +62,9 @@ export const getMealplanById = mealplan_id => dispatch => {
 
 //create mealplan
 export const createMealplan = (planData, history) => dispatch => {
-  axios.post("/api/meal-plan", planData).then(res => dispatch(getMealplans()));
+  axios
+    .post("/api/meal-plan", planData)
+    .then(res => dispatch(getMealplansByUser(planData.user_id)));
 };
 
 //add meal to mealplan

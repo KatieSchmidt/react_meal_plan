@@ -34,12 +34,12 @@ router.get("/:plan_id", (req, res) => {
 //@route  GET api/meals/usermealplans/:user_id
 //@dsc    get meals by user_id
 //@access Public
-router.get("/usermeaplans/:user_id", (req, res) => {
+router.get("/usermealplans/:user_id", (req, res) => {
   const errors = {};
   MealPlan.find({ user: req.params.user_id })
     .then(mealplans => {
       if (!mealplans) {
-        errors.mealplans = "this user doesnt have any mealplanss";
+        errors.mealplans = "this user doesnt have any mealplans";
         res.status(404).json(errors.mealplans);
       } else {
         res.json(mealplans);

@@ -8,7 +8,8 @@ class CreateMealplan extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      planname: ""
+      planname: "",
+      user_id: ""
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -33,13 +34,6 @@ class CreateMealplan extends Component {
       <div className="create-mealplan-component text-center">
         <h1>Create a Mealplan</h1>
         <form onSubmit={this.onSubmit}>
-          {/* <input
-            placeholder="Mealplan Name"
-            name="planname"
-            value={this.state.planname}
-            onChange={this.onChange}
-            info="name your mealplan a day is a good idea. like monday"
-          /> */}
           <select
             name="planname"
             value={this.state.planname}
@@ -54,12 +48,6 @@ class CreateMealplan extends Component {
             <option value="Saturday">Saturday</option>
             <option value="Sunday">Sunday</option>
           </select>
-          {/* <input
-            type="date"
-            name="planname"
-            value={this.state.planname}
-            onChange={this.onChange}
-          /> */}
           <button type="submit" className="m-2 btn btn-success">
             Create Mealplan
           </button>
