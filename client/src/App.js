@@ -20,6 +20,8 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import "./App.css";
 
+import Home from "./components/home/Home";
+
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
@@ -47,6 +49,7 @@ class App extends Component {
         <Router>
           <div>
             <Navbar />
+            <Route exact path="/" component={Home} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
 
