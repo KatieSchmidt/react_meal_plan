@@ -6,8 +6,8 @@ import { withRouter } from "react-router-dom";
 import { deleteMealplan } from "../../actions/mealplanActions";
 
 class MealplanItem extends Component {
-  onDeleteMealplanClick(id) {
-    this.props.deleteMealplan(id, this.props.history);
+  onDeleteMealplanClick(id, user_id) {
+    this.props.deleteMealplan(id, user_id, this.props.history);
   }
   render() {
     const { mealplan } = this.props;
@@ -38,7 +38,11 @@ class MealplanItem extends Component {
           <i className="fas fa-edit" />
         </Link>
         <button
-          onClick={this.onDeleteMealplanClick.bind(this, mealplan._id)}
+          onClick={this.onDeleteMealplanClick.bind(
+            this,
+            mealplan._id,
+            mealplan.user
+          )}
           className="btn btn-sm btn-danger"
         >
           Delete Mealplan

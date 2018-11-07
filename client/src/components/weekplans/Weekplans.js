@@ -1,14 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { getWeekplans } from "../../actions/weekplanActions";
+import { getWeekplansByUser } from "../../actions/weekplanActions";
 import WeekplanItem from "./WeekplanItem";
 import CreateWeekplan from "./CreateWeekplan";
 
 class Weekplans extends Component {
   componentDidMount() {
-    this.props.getWeekplans();
+    this.props.getWeekplansByUser(this.props.auth.user.id);
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.auth.isAuthenticated) {
+      this.props.history.push(`/login`);
+    }
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   render() {
     const { weekplans } = this.props.weekplan;
     let weekplanItems;
@@ -20,7 +31,7 @@ class Weekplans extends Component {
           <WeekplanItem key={weekplan._id} weekplan={weekplan} />
         ));
     } else {
-      weekplanItems = <p>this isnt working correctly</p>;
+      weekplanItems = <p>You havent created any weekly plans yet!</p>;
     }
     return (
       <div>
@@ -32,16 +43,17 @@ class Weekplans extends Component {
 }
 
 Weekplans.propTypes = {
-  getWeekplans: PropTypes.func.isRequired,
+  getWeekplansByUser: PropTypes.func.isRequired,
   weekplan: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  getWeekplans: PropTypes.func.isrequired,
-  weekplan: state.weekplan
+  getWeekplansByUser: PropTypes.func.isrequired,
+  weekplan: state.weekplan,
+  auth: state.auth
 });
 
 export default connect(
   mapStateToProps,
-  { getWeekplans }
-)(Weekplans);
+  { getWeekplansByUser }
+)(withRouter(Weekplans));

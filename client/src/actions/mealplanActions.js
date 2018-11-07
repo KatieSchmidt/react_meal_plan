@@ -99,11 +99,11 @@ export const deleteMealFromMealplan = (
 };
 
 //delete mealplan
-export const deleteMealplan = (mealplan_id, history) => dispatch => {
+export const deleteMealplan = (mealplan_id, user_id, history) => dispatch => {
   axios
     .delete(`/api/meal-plan/${mealplan_id}`)
     .then(res => {
-      dispatch(getMealplans());
+      dispatch(getMealplansByUser(user_id));
     })
     .then(history.push("/meal-plan"))
     .then(res =>

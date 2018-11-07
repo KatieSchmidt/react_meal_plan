@@ -37,12 +37,29 @@ router.get("/:week_plan_id", (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
+//@route GET api/week-plan/userweekplans/:user_id
+//@dsc    get week plans by user id
+//@access Public
+router.get("/userweekplans/:user_id", (req, res) => {
+  WeekPlan.find({ user: req.params.user_id })
+    .populate({
+      path: "mealplans",
+      populate: {
+        path: "meals",
+        ref: "Meal"
+      }
+    })
+    .then(week_plans => res.json(week_plans))
+    .catch(err => res.status(404).json(err));
+});
+
 //@route POST api/week-plan
 //@dsc    create a weekplan
 //@access Public
 router.post("/", (req, res) => {
   const plan = new WeekPlan({
-    planname: req.body.planname
+    planname: req.body.planname,
+    user: req.body.user_id
   });
   plan
     .save()

@@ -22,7 +22,8 @@ class CreateWeekplan extends Component {
   onSubmit(e) {
     e.preventDefault();
     const mealData = {
-      planname: this.state.planname
+      planname: this.state.planname,
+      user_id: this.props.auth.user.id
     };
     this.props.createWeekplan(mealData, this.props.history);
     this.setState({ planname: "" });
@@ -52,7 +53,8 @@ CreateWeekplan.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  weekplan: state.weekplan
+  weekplan: state.weekplan,
+  auth: state.auth
 });
 
 export default connect(

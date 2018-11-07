@@ -6,8 +6,8 @@ import { withRouter } from "react-router-dom";
 import { deleteWeekplan } from "../../actions/weekplanActions";
 
 class WeekplanItem extends Component {
-  onDeleteWeekplanClick(id) {
-    this.props.deleteWeekplan(id, this.props.history);
+  onDeleteWeekplanClick(id, user_id) {
+    this.props.deleteWeekplan(id, user_id, this.props.history);
   }
   render() {
     const { weekplan } = this.props;
@@ -38,7 +38,11 @@ class WeekplanItem extends Component {
           <i className="fas fa-edit" />
         </Link>
         <button
-          onClick={this.onDeleteWeekplanClick.bind(this, weekplan._id)}
+          onClick={this.onDeleteWeekplanClick.bind(
+            this,
+            weekplan._id,
+            weekplan.user
+          )}
           className="btn btn-sm btn-danger"
         >
           Delete Weekplan

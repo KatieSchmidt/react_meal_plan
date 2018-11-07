@@ -2,7 +2,8 @@ import axios from "axios";
 import {
   GET_WEEKPLANS,
   GET_WEEKPLAN_BY_ID,
-  ADD_MEALPLAN_TO_WEEKPLAN
+  ADD_MEALPLAN_TO_WEEKPLAN,
+  GET_WEEKPLANS_BY_USER
 } from "./types";
 
 //get weekplans
@@ -18,6 +19,24 @@ export const getWeekplans = () => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_WEEKPLANS,
+        payload: err.data
+      })
+    );
+};
+
+//get weekplans by user
+export const getWeekplansByUser = user_id => dispatch => {
+  axios
+    .get(`/api/week-plan/userweekplans/${user_id}`)
+    .then(res =>
+      dispatch({
+        type: GET_WEEKPLANS_BY_USER,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_WEEKPLANS_BY_USER,
         payload: err.data
       })
     );
@@ -78,11 +97,11 @@ export const deleteMealplanFromWeekplan = (
 };
 
 //delete week plan
-export const deleteWeekplan = (weekplan_id, history) => dispatch => {
+export const deleteWeekplan = (weekplan_id, user_id, history) => dispatch => {
   axios
     .delete(`/api/week-plan/${weekplan_id}`)
     .then(res => {
-      dispatch(getWeekplans());
+      dispatch(getWeekplansByUser(user_id));
     })
     .then(history.push("/week-plan"))
     .then(res =>

@@ -4,6 +4,10 @@ const Schema = mongoose.Schema;
 //create schema
 
 const WeekPlanSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "users"
+  },
   planname: {
     type: String,
     required: true

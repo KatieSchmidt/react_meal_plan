@@ -2,6 +2,7 @@ import {
   GET_WEEKPLANS,
   CREATE_WEEKPLAN,
   GET_WEEKPLAN_BY_ID,
+  GET_WEEKPLANS_BY_USER,
   ADD_MEALPLAN_TO_WEEKPLAN
 } from "../actions/types";
 
@@ -18,6 +19,11 @@ export default function(state = initialState, action) {
         weekplan: action.payload
       };
     case GET_WEEKPLANS:
+      return {
+        ...state,
+        weekplans: action.payload
+      };
+    case GET_WEEKPLANS_BY_USER:
       return {
         ...state,
         weekplans: action.payload
