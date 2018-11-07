@@ -20,6 +20,7 @@ class Mealplan extends Component {
   onDeleteMealplanClick() {
     this.props.deleteMealplan(
       this.props.match.params.mealplan_id,
+      this.props.auth.user.id,
       this.props.history
     );
   }
@@ -118,7 +119,8 @@ Mealplan.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  mealplan: state.mealplan
+  mealplan: state.mealplan,
+  auth: state.auth
 });
 
 export default connect(

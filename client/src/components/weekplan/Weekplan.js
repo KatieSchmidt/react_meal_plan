@@ -20,6 +20,7 @@ class Weekplan extends Component {
   onDeleteWeekplanClick() {
     this.props.deleteWeekplan(
       this.props.match.params.week_plan_id,
+      this.props.auth.user.id,
       this.props.history
     );
   }
@@ -120,7 +121,8 @@ Weekplan.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  weekplan: state.weekplan
+  weekplan: state.weekplan,
+  auth: state.auth
 });
 
 export default connect(

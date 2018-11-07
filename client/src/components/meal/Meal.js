@@ -17,7 +17,11 @@ class Meal extends Component {
   }
 
   onDeleteMealClick() {
-    this.props.deleteMeal(this.props.match.params.meal_id, this.props.history);
+    this.props.deleteMeal(
+      this.props.match.params.meal_id,
+      this.props.auth.user.id,
+      this.props.history
+    );
   }
   onDeleteIngredientClick(id) {
     this.props.deleteIngredient(this.props.match.params.meal_id, id);
@@ -68,7 +72,8 @@ Meal.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  meal: state.meal
+  meal: state.meal,
+  auth: state.auth
 });
 
 export default connect(

@@ -106,13 +106,13 @@ export const deleteWeekplan = (weekplan_id, user_id, history) => dispatch => {
     .then(history.push("/week-plan"))
     .then(res =>
       dispatch({
-        type: GET_WEEKPLANS,
+        type: GET_WEEKPLANS_BY_USER,
         payload: res.data
       })
     )
     .catch(err =>
       dispatch({
-        type: GET_WEEKPLANS,
+        type: GET_WEEKPLANS_BY_USER,
         payload: err.data
       })
     );

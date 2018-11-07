@@ -108,14 +108,14 @@ export const deleteMealplan = (mealplan_id, user_id, history) => dispatch => {
     .then(history.push("/meal-plan"))
     .then(res =>
       dispatch({
-        type: GET_MEALPLANS,
+        type: GET_MEALPLANS_BY_USER,
         payload: res.data
       })
     )
 
     .catch(err =>
       dispatch({
-        type: GET_MEALPLANS,
+        type: GET_MEALPLANS_BY_USER,
         payload: err.data
       })
     );
