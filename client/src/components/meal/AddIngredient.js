@@ -82,6 +82,7 @@ class AddIngredient extends Component {
             <option>Quart</option>
             <option>Portion</option>
           </select>
+          <br />
           <button type="submit" className="m-2 btn btn-success">
             Add Ingredient
           </button>

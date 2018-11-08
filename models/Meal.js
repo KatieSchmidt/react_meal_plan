@@ -13,7 +13,8 @@ const MealSchema = new Schema({
     required: true
   },
   totalcalories: {
-    type: Number
+    type: Number,
+    default: 0
   },
   ingredients: [
     {
