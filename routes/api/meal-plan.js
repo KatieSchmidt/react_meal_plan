@@ -69,6 +69,7 @@ router.post("/", (req, res) => {
 router.post("/:mealplan_id/:meal_id", (req, res) => {
   MealPlan.findById(req.params.mealplan_id).then(mealplan => {
     Meal.findById(req.params.meal_id).then(meal => {
+      meal.inplans.push(mealplan._id);
       mealplan.totalcalories += meal.totalcalories;
       mealplan.meals.unshift(meal._id);
       mealplan.save().then(mealplan => res.json(mealplan));

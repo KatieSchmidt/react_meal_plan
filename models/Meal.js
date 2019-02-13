@@ -39,7 +39,12 @@ const MealSchema = new Schema({
   dateAdded: {
     type: Date,
     default: Date.now()
-  }
+  },
+  inplans: [
+    {
+      type: String
+    }
+  ]
 });
 
 module.exports = Meal = mongoose.model("meals", MealSchema);

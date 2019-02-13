@@ -61,7 +61,7 @@ router.post("/", (req, res) => {
   const mealFields = {};
   mealFields.mealname = req.body.mealname;
   mealFields.user = req.body.user;
-  Meal.findOne({ mealname: mealFields.mealname })
+  Meal.findOne({ mealname: mealFields.mealname, user: mealFields.user })
     .then(meal => {
       if (meal) {
         errors.meal = "this meal already exists";
@@ -106,7 +106,7 @@ router.post("/:meal_id/ingredient", (req, res) => {
 //@dsc    delete a meal
 //@access Public
 router.delete("/:meal_id", (req, res) => {
-  Meal.findByIdAndRemove(req.params.meal_id).then(() => {
+  Meal.findByIdAndDelete(req.params.meal_id).then(meal => {
     res.json({ success: true });
   });
 });
