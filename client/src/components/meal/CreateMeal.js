@@ -3,15 +3,23 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { createMeal } from "../../actions/mealActions";
+import TextFieldGroup from "../../common/TextFieldGroup";
 
 class CreateMeal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mealname: ""
+      mealname: "",
+      errors: {}
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
   }
 
   onChange(e) {
@@ -31,20 +39,20 @@ class CreateMeal extends Component {
     });
   }
   render() {
+    const { errors } = this.state;
     return (
       <div className="text-center create-meal-component">
         <h1>Create a Meal</h1>
-        <form onSubmit={this.onSubmit}>
-          <input
+        <form onSubmit={this.onSubmit} noValidate>
+          <TextFieldGroup
             placeholder="Meal Name"
             name="mealname"
+            type="string"
             value={this.state.mealname}
             onChange={this.onChange}
-            info="name your meal, you can add ingredients and calories later"
+            error={errors.mealname}
           />
-          <button type="submit" className="m-2 btn btn-success">
-            Create Meal
-          </button>
+          <input type="submit" className="btn btn-info btn-block mt-4" />
         </form>
       </div>
     );
@@ -52,12 +60,14 @@ class CreateMeal extends Component {
 }
 
 CreateMeal.propTypes = {
-  createMeal: PropTypes.func.isRequired
+  createMeal: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   meal: state.meal,
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 });
 
 export default connect(

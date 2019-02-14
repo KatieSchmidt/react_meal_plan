@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Meal = require("../../models/Meal");
 
+const validateMealInput = require("../../validation/meal");
+
 //@route  GET api/meals
 //@dsc    get all meals
 //@access Public
@@ -57,15 +59,21 @@ router.get("/usermeals/:user_id", (req, res) => {
 //@dsc    create a meal
 //@access Public
 router.post("/", (req, res) => {
-  const errors = {};
-  const mealFields = {};
-  mealFields.mealname = req.body.mealname;
-  mealFields.user = req.body.user;
+  const { errors, isValid } = validateMealInput(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+  const mealFields = {
+    mealname: req.body.mealname,
+    user: req.body.user
+  };
+
   Meal.findOne({ mealname: mealFields.mealname, user: mealFields.user })
     .then(meal => {
       if (meal) {
-        errors.meal = "this meal already exists";
-        res.status(400).json(errors.meal);
+        errors.mealname = "this meal already exists";
+        res.status(400).json(errors.mealname);
       } else {
         new Meal(mealFields).save().then(meal => res.json(meal));
       }
