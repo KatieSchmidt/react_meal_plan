@@ -73,9 +73,11 @@ router.post("/", (req, res) => {
     .then(meal => {
       if (meal) {
         errors.mealname = "this meal already exists";
-        res.status(400).json(errors.mealname);
+        res.status(400).json(errors);
       } else {
-        new Meal(mealFields).save().then(meal => res.json(meal));
+        new Meal(mealFields).save().then(meal => {
+          res.json(meal);
+        });
       }
     })
     .catch(err => res.status(404).json(err));

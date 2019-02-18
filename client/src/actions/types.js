@@ -33,6 +33,7 @@ export const DELETE_WEEKPLAN = "DELETE_WEEKPLAN";
 export const CREATE_WEEKLY_GROCERY_LIST = "CREATE_WEEKLY_GROCERY_LIST";
 export const GET_WEEKLY_GROCERY_LIST = "GET_WEEKLY_GROCERY_LIST";
 
-//user and profile actions
+//user, error, and profile actions
 export const GET_ERRORS = "GET_ERRORS";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const SET_CURRENT_USER = "SET_CURRENT_USER";

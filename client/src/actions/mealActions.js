@@ -3,7 +3,8 @@ import {
   GET_MEALS,
   GET_MEAL_BY_ID,
   GET_MEALS_BY_USER,
-  GET_ERRORS
+  GET_ERRORS,
+  CLEAR_ERRORS
 } from "./types";
 
 //get meals
@@ -47,7 +48,10 @@ export const createMeal = (mealData, history) => dispatch => {
   //post to api
   axios
     .post("/api/meals", mealData)
-    .then(res => dispatch(getMealsByUser(mealData.user)))
+    .then(res => {
+      dispatch(clearErrors());
+      dispatch(getMealsByUser(mealData.user));
+    })
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -122,4 +126,11 @@ export const deleteMeal = (meal_id, user_id, history) => dispatch => {
         payload: err.data
       })
     );
+};
+
+//clear errors
+export const clearErrors = () => {
+  return {
+    type: CLEAR_ERRORS
+  };
 };
