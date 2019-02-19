@@ -3,6 +3,7 @@ const router = express.Router();
 const Meal = require("../../models/Meal");
 
 const validateMealInput = require("../../validation/meal");
+const validateIngredientInput = require("../../validation/ingredient");
 
 //@route  GET api/meals
 //@dsc    get all meals
@@ -87,7 +88,11 @@ router.post("/", (req, res) => {
 //@dsc    add meals ingredients and calories per ingredient
 //@access Public
 router.post("/:meal_id/ingredient", (req, res) => {
-  const errors = {};
+  const { errors, isValid } = validateIngredientInput(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
   const ingredient = {};
   ingredient.ingredient = req.body.ingredient;
   ingredient.calories = req.body.calories;

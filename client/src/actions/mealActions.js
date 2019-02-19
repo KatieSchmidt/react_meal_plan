@@ -62,12 +62,21 @@ export const createMeal = (mealData, history) => dispatch => {
 
 //add ingredients to meal
 export const addIngredient = (meal_id, mealData) => dispatch => {
-  axios.post(`/api/meals/${meal_id}/ingredient`, mealData).then(res =>
-    dispatch({
-      type: GET_MEAL_BY_ID,
-      payload: res.data
+  axios
+    .post(`/api/meals/${meal_id}/ingredient`, mealData)
+    .then(res => {
+      dispatch(clearErrors());
+      dispatch({
+        type: GET_MEAL_BY_ID,
+        payload: res.data
+      });
     })
-  );
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
 };
 
 // get meal by id

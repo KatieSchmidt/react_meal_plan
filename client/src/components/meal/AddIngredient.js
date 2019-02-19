@@ -4,10 +4,15 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { addIngredient } from "../../actions/mealActions";
 
+import TextFieldGroup from "../../common/TextFieldGroup";
+
+import classnames from "classnames";
+
 class AddIngredient extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      errors: {},
       ingredient: "",
       calories: "",
       measureunit: "",
@@ -16,7 +21,12 @@ class AddIngredient extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-  componentWillReceiveProps() {}
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
 
   onChange(e) {
     this.setState({
@@ -41,36 +51,43 @@ class AddIngredient extends Component {
     });
   }
   render() {
+    const { errors } = this.state;
     return (
       <div className="text-center add-ingredient-component">
         <h3>Add Ingredients</h3>
-        <form onSubmit={this.onSubmit}>
-          <input
+        <form onSubmit={this.onSubmit} noValidate>
+          <TextFieldGroup
             placeholder="Ingredient"
             name="ingredient"
+            type="string"
             value={this.state.ingredient}
             onChange={this.onChange}
-            className="m-2"
+            error={errors.ingredient}
           />
-          <input
+          <TextFieldGroup
             placeholder="Calories"
             name="calories"
+            type="string"
             value={this.state.calories}
             onChange={this.onChange}
-            className="m-2"
+            error={errors.calories}
           />
-          <input
+          <TextFieldGroup
             placeholder="Quantity"
             name="measureunitquantity"
+            type="string"
             value={this.state.measureunitquantity}
             onChange={this.onChange}
-            className="m-2"
+            error={errors.measureunitquantity}
           />
           <select
             name="measureunit"
             value={this.state.measureunit}
             onChange={this.onChange}
-            className="m-2"
+            className={classnames("form-control form-control-lg", {
+              "is-invalid": errors.measureunit
+            })}
+            noValidate
           >
             <option>Select Unit</option>
             <option>Cup</option>
@@ -82,6 +99,9 @@ class AddIngredient extends Component {
             <option>Quart</option>
             <option>Portion</option>
           </select>
+          {errors.measureunit && (
+            <div className="invalid-feedback">{errors.measureunit}</div>
+          )}
           <br />
           <button type="submit" className="m-2 btn btn-success">
             Add Ingredient
@@ -94,11 +114,13 @@ class AddIngredient extends Component {
 
 AddIngredient.propTypes = {
   addIngredient: PropTypes.func.isRequired,
-  meal: PropTypes.object.isRequired
+  meal: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  meal: state.meal
+  meal: state.meal,
+  errors: state.errors
 });
 
 export default connect(

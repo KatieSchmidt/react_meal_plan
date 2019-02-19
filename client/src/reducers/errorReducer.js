@@ -2,8 +2,10 @@ import { GET_ERRORS, CLEAR_ERRORS } from "../actions/types";
 
 const initialState = {
   mealname: null,
-  email: null,
-  password: null
+  ingredient: null,
+  calories: null,
+  measureunit: null,
+  measureunitquantity: null
 };
 
 export default function(state = initialState, action) {
@@ -12,8 +14,8 @@ export default function(state = initialState, action) {
       return action.payload;
     case CLEAR_ERRORS:
       return {
-        ...state,
-        mealname: null
+        mealname: null,
+        ingredient: null
       };
     default:
       return state;
