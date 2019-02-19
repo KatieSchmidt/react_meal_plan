@@ -43,12 +43,17 @@ class AddIngredient extends Component {
       measureunit: this.state.measureunit
     };
     this.props.addIngredient(meal_id, ingredientData, this.props.history);
-    this.setState({
-      ingredient: "",
-      calories: "",
-      measureunit: "",
-      measureunitquantity: ""
-    });
+    if (
+      !this.state.errors.ingredient ||
+      this.state.errors.ingredient === null
+    ) {
+      this.setState({
+        ingredient: "",
+        calories: "",
+        measureunit: "",
+        measureunitquantity: ""
+      });
+    }
   }
   render() {
     const { errors } = this.state;
