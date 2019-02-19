@@ -41,7 +41,7 @@ class Mealplans extends Component {
 
 Mealplans.propTypes = {
   getMealplansByUser: PropTypes.func.isRequired,
-  mealplans: PropTypes.object.isRequired
+  mealplans: PropTypes.object
 };
 
 const mapStateToProps = state => ({
