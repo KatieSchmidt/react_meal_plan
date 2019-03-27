@@ -98,7 +98,7 @@ class Weekplan extends Component {
     }
 
     return (
-      <div>
+      <div className="component">
         {weekplanContent}
         <h3>Current Mealplans In This Weekplan</h3>
         <ul className="list-unstyled">{weekContent || noWeekContent}</ul>

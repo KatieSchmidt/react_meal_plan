@@ -24,10 +24,10 @@ class Meals extends Component {
     let mealItems;
     if (meals) {
       mealItems = meals.map(meal => (
-        <div className="meal-items col m-2" key={meal._id + "mealItemDiv"}>
+        <div className="list-item" key={meal._id + "mealItemDiv"}>
           <MealItem meal={meal} />
           <button
-            className="add-meal-button btn btn-success"
+            className="btn btn-success"
             onClick={this.onAddMealClick.bind(this, meal._id)}
           >
             Add Meal
@@ -36,16 +36,14 @@ class Meals extends Component {
       ));
     } else {
       mealItems = (
-        <button className="text-center btn btn-success add-meal-link-button">
-          <Link to="/meals" className="add-meal-link-button ">
-            Create Meal
-          </Link>
+        <button className="text-center btn btn-success">
+          <Link to="/meals">Create Meal</Link>
         </button>
       );
     }
     return (
-      <div className="container">
-        <div className="text-center">{mealItems}</div>
+      <div className="component">
+        <div className="list">{mealItems}</div>
       </div>
     );
   }

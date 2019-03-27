@@ -24,7 +24,7 @@ class Mealplans extends Component {
     let mealplanItems;
     if (mealplans) {
       mealplanItems = mealplans.map(mealplan => (
-        <div className="meal-items col m-2" key={mealplan._id + "mealItemDiv"}>
+        <div className="list-item" key={mealplan._id + "mealItemDiv"}>
           <MealplanItem mealplan={mealplan} />
           <button
             className="add-meal-button btn btn-success"
@@ -44,8 +44,8 @@ class Mealplans extends Component {
       );
     }
     return (
-      <div className="container">
-        <div className="text-center">{mealplanItems}</div>
+      <div>
+        <div className="list">{mealplanItems}</div>
       </div>
     );
   }

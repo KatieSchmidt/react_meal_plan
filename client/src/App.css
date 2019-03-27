@@ -23,7 +23,6 @@
   border: solid black 1px;
   padding: 2em;
   box-shadow: 2.5px 5px 4px #888888;
-  width: 100%;
   text-align: center;
 }
 
@@ -35,7 +34,6 @@
   .list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr auto;
   }
 }
 
