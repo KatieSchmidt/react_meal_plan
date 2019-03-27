@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const path = require("path");
 
 const meals = require("./routes/api/meals");
 const mealplan = require("./routes/api/meal-plan");
@@ -9,6 +10,8 @@ const groceries = require("./routes/api/grocery-list");
 const weekplan = require("./routes/api/week-plan");
 const weeklygrocerylist = require("./routes/api/weekly-grocery-list");
 const users = require("./routes/api/users");
+
+require("dotenv").config();
 
 // body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -34,6 +37,12 @@ app.use("/api/weekly-grocery-list", weeklygrocerylist);
 app.use("/api/users", users);
 
 const port = require("./config/keys").port;
+
+app.use(express.static(path.join(__dirname, "client", "build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(port, () => {
   console.log(`App started on port ${port}`);
