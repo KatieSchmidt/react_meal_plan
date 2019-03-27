@@ -33,7 +33,7 @@ class MealplanItem extends Component {
     }
 
     return (
-      <div className="mealplan-item-component">
+      <div className="list-item">
         <Link to={`/meal-plan/${mealplan._id}`} className="float-right">
           <i className="fas fa-edit" />
         </Link>

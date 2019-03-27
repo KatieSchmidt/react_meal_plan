@@ -31,7 +31,7 @@ class CreateMealplan extends Component {
   }
   render() {
     return (
-      <div className="create-mealplan-component text-center">
+      <div className="create-component text-center">
         <h1>Create a Mealplan</h1>
         <form onSubmit={this.onSubmit}>
           <select

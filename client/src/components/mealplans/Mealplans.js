@@ -31,9 +31,9 @@ class Mealplans extends Component {
         ));
     }
     return (
-      <div>
+      <div className="component">
         <CreateMealplan />
-        <div>{mealplanItems}</div>
+        <div className="list">{mealplanItems}</div>
       </div>
     );
   }
