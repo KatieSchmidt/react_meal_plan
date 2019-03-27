@@ -36,19 +36,24 @@ class MealItem extends Component {
 
     return (
       <div className="meal-item-component">
-        <h2>{meal.mealname}</h2>
+        <h2 className="meal-item-component-header">{meal.mealname}</h2>
         {caloriesInfo}
         {ingredientsInfo}
 
-        <Link to={`/meals/${meal._id}`}>
-          <i className="fas fa-edit float-right ml-2" />
-        </Link>
+        <div className="button-box">
+          <Link
+            to={`/meals/${meal._id}`}
+            className="meal-item-component-edit-button"
+          >
+            <i className="fas fa-edit" />
+          </Link>
 
-        <div
-          onClick={this.deleteMeal.bind(this, meal._id, meal.user)}
-          className="float-right"
-        >
-          <i className="far fa-trash-alt" />
+          <div
+            onClick={this.deleteMeal.bind(this, meal._id, meal.user)}
+            className="meal-item-component-delete-button"
+          >
+            <i className="far fa-trash-alt" />
+          </div>
         </div>
       </div>
     );

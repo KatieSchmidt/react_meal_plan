@@ -19,10 +19,7 @@ const db = require("./config/keys").mongoURI;
 
 //connect to mongodb
 mongoose
-  .connect(
-    db,
-    { useNewUrlParser: true }
-  )
+  .connect(db, { useNewUrlParser: true })
   .then(() => {
     console.log("MongoDB Connected!");
   })
@@ -36,7 +33,7 @@ app.use("/api/week-plan", weekplan);
 app.use("/api/weekly-grocery-list", weeklygrocerylist);
 app.use("/api/users", users);
 
-const port = process.env.PORT || 5000;
+const port = require("./config/keys").port;
 
 app.listen(port, () => {
   console.log(`App started on port ${port}`);

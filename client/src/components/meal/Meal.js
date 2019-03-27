@@ -55,7 +55,7 @@ class Meal extends Component {
         <AddIngredient meal={this.props.meal} />
         <button
           onClick={this.onDeleteMealClick.bind(this)}
-          className="btn btn-sm btn-danger"
+          className="btn btn-sm btn-danger mb-5"
         >
           Delete Meal
         </button>

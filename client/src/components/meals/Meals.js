@@ -31,9 +31,9 @@ class Meals extends Component {
         .map(meal => <MealItem meal={meal} key={meal._id + "mealItem"} />);
     }
     return (
-      <div>
+      <div className="meals">
         <CreateMeal />
-        <div>{mealItems}</div>
+        <div className="meals-list">{mealItems}</div>
       </div>
     );
   }
