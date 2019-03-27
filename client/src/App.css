@@ -1,20 +1,15 @@
-/*meals component*/
-.meals {
-  display: grid;
-  grid-template-columns: 12;
-  grid-template-rows: repeat(2, auto);
+.component {
+  margin: 20px;
 }
 
-.create-meal-component {
+.create-component {
   border: solid black 1px;
-  margin: 2em;
   padding: 2em;
   box-shadow: 2.5px 5px 4px #888888;
-  grid-column: 1/-1;
-  grid-row: 1/2;
+  margin-bottom: 20px;
 }
 
-.meals-list {
+.list {
   grid-column: 1/-1;
   grid-row: 2/-1;
   display: grid;
@@ -24,7 +19,7 @@
   grid-gap: 20px;
 }
 
-.meal-item-component {
+.list-item {
   border: solid black 1px;
   padding: 2em;
   box-shadow: 2.5px 5px 4px #888888;
@@ -32,10 +27,11 @@
   text-align: center;
 }
 
-.meal-item-component-header,
-h3 {
-  text-align: center;
+.meal-item-component-header {
+  text-transform: capitalize;
 }
+
+/*mealplans styles*/
 
 /* 
 .mealplan-item-component {
@@ -94,7 +90,7 @@ h1 {
 } */
 
 @media only screen and (min-width: 600px) {
-  .meals-list {
+  .list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr auto;
@@ -102,19 +98,19 @@ h1 {
 }
 
 @media only screen and (min-width: 900px) {
-  .meals-list {
+  .list {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media only screen and (min-width: 1200px) {
-  .meals-list {
+  .list {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media only screen and (min-width: 1500px) {
-  .meals-list {
+  .list {
     grid-template-columns: repeat(5, 1fr);
   }
 }

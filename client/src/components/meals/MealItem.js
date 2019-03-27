@@ -35,7 +35,7 @@ class MealItem extends Component {
     }
 
     return (
-      <div className="meal-item-component">
+      <div className="list-item">
         <h2 className="meal-item-component-header">{meal.mealname}</h2>
         {caloriesInfo}
         {ingredientsInfo}

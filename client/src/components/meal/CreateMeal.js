@@ -41,7 +41,7 @@ class CreateMeal extends Component {
   render() {
     const { errors } = this.state;
     return (
-      <div className="text-center create-meal-component">
+      <div className="text-center  create-component">
         <h1>Create a Meal</h1>
         <form onSubmit={this.onSubmit} noValidate>
           <TextFieldGroup
@@ -52,7 +52,7 @@ class CreateMeal extends Component {
             onChange={this.onChange}
             error={errors.mealname}
           />
-          <input type="submit" className="btn btn-info btn-block mt-4" />
+          <input type="submit" className="btn btn-info btn-block" />
         </form>
       </div>
     );
