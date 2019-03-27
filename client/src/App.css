@@ -31,64 +31,6 @@
   text-transform: capitalize;
 }
 
-/*mealplans styles*/
-
-/* 
-.mealplan-item-component {
-  border: solid black 1px;
-  margin: 2em;
-  padding: 2em;
-  box-shadow: 2.5px 5px 4px #888888;
-}
-.mealplan-item-component h2,
-h3,
-h4 {
-  text-align: center;
-}
-
-.meal-items {
-  text-align: center;
-  border: solid black 1px;
-  padding: 0.5em;
-  box-shadow: 2.5px 5px 4px #888888;
-}
-
-.total-calories {
-  text-align: center;
-}
-.total-ingredients {
-  text-align: center;
-}
-
-h1 {
-  text-align: center;
-}
-
-.lifted-navbar {
-  box-shadow: 5px 10px 8px #888888;
-}
-
-.create-mealplan-component {
-  border: solid black 1px;
-  margin: 2em;
-  padding: 2em;
-  box-shadow: 2.5px 5px 4px #888888;
-}
-
-.add-ingredient-component {
-  border: solid black 1px;
-  margin: 2em;
-  padding: 2em;
-  box-shadow: 2.5px 5px 4px #888888;
-}
-
-.add-meal-link-button:link,
-.add-meal-link-button:visited,
-.add-meal-link-button:hover,
-.add-meal-link-button:active {
-  color: white;
-} */
-
 @media only screen and (min-width: 600px) {
   .list {
     display: grid;

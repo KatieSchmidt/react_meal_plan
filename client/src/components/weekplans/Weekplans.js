@@ -34,9 +34,9 @@ class Weekplans extends Component {
       weekplanItems = <p>You havent created any weekly plans yet!</p>;
     }
     return (
-      <div>
+      <div className="component">
         <CreateWeekplan />
-        <div>{weekplanItems}</div>
+        <div className="list">{weekplanItems}</div>
       </div>
     );
   }
