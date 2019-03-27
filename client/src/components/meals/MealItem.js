@@ -41,10 +41,7 @@ class MealItem extends Component {
         {ingredientsInfo}
 
         <div className="button-box">
-          <Link
-            to={`/meals/${meal._id}`}
-            className="meal-item-component-edit-button"
-          >
+          <Link to={`/meals/${meal._id}`} className="">
             <i className="fas fa-edit" />
           </Link>
 
@@ -52,7 +49,7 @@ class MealItem extends Component {
             onClick={this.deleteMeal.bind(this, meal._id, meal.user)}
             className="meal-item-component-delete-button"
           >
-            <i className="far fa-trash-alt" />
+            <i className="far fa-trash-alt delete-link" />
           </div>
         </div>
       </div>

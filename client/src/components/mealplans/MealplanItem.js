@@ -32,24 +32,29 @@ class MealplanItem extends Component {
       mealplansInfo = <h4 className="total-meals">No meals listed</h4>;
     }
 
-    return (
-      <div className="list-item">
+    let buttonBox = (
+      <div className="button-box">
         <Link to={`/meal-plan/${mealplan._id}`} className="float-right">
           <i className="fas fa-edit" />
         </Link>
-        <button
+        <div
           onClick={this.onDeleteMealplanClick.bind(
             this,
             mealplan._id,
             mealplan.user
           )}
-          className="btn btn-sm btn-danger"
         >
-          Delete Mealplan
-        </button>
+          <i className="far fa-trash-alt delete-link" />
+        </div>
+      </div>
+    );
+
+    return (
+      <div className="list-item">
         <h2>{mealplan.planname}</h2>
         {totalcaloriesInfo}
         {mealplansInfo}
+        {buttonBox}
       </div>
     );
   }

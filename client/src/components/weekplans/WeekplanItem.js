@@ -32,24 +32,29 @@ class WeekplanItem extends Component {
       weekplansInfo = <h4 className="total-meals">No mealplans listed</h4>;
     }
 
-    return (
-      <div className="list-item">
-        <Link to={`/week-plan/${weekplan._id}`} className="float-right">
+    let buttonBox = (
+      <div className="button-box">
+        <Link to={`/week-plan/${weekplan._id}`}>
           <i className="fas fa-edit" />
         </Link>
-        <button
+        <div
           onClick={this.onDeleteWeekplanClick.bind(
             this,
             weekplan._id,
             weekplan.user
           )}
-          className="btn btn-sm btn-danger"
         >
-          Delete Weekplan
-        </button>
+          <i className="far fa-trash-alt delete-link" />
+        </div>
+      </div>
+    );
+
+    return (
+      <div className="list-item">
         <h2>{weekplan.planname}</h2>
         {totalcaloriesInfo}
         {weekplansInfo}
+        {buttonBox}
       </div>
     );
   }
