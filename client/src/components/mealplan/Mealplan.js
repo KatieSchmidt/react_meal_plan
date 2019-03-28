@@ -48,21 +48,17 @@ class Mealplan extends Component {
     } else {
       mealplanContent = (
         <div>
-          <div className="text-center">
-            <h1>
-              {mealplan.planname.toUpperCase()} - {mealplan.totalcalories}{" "}
-              Calories
-            </h1>
-          </div>
-          <div className="text-center">
+          <h1 className="plan__name">{mealplan.planname}</h1>
+          <h2 className="plan__calories">{mealplan.totalcalories} Calories</h2>
+          <div className="plan__button-box">
             <button
-              className=" ml-2 btn btn-sm btn-danger"
+              className="btn btn-sm btn-danger"
               onClick={this.onDeleteMealplanClick.bind(this)}
             >
-              Delete
+              Delete Mealplan
             </button>
             <button
-              className=" ml-2 btn btn-sm btn-warning"
+              className="btn btn-sm btn-warning"
               onClick={this.onCreateGroceryListClick.bind(this)}
             >
               Get Grocery List
@@ -74,9 +70,9 @@ class Mealplan extends Component {
       if (mealplan.meals.length > 0) {
         mealContent = mealplan.meals.map((meal, index) => {
           return (
-            <li className="text-center" key={meal._id + "meal" + index}>
+            <li className="plan__list-item" key={meal._id + "meal" + index}>
               <button
-                className="m-1 btn btn-sm btn-danger"
+                className="btn btn-sm btn-danger"
                 onClick={this.onDeleteMealFromMealplanClick.bind(
                   this,
                   meal._id
@@ -95,16 +91,27 @@ class Mealplan extends Component {
       }
     }
 
-    return (
-      <div>
-        {mealplanContent}
-        <h3>Current Meals In This Mealplan</h3>
-        <ul className="list-unstyled">{mealContent || noMealContent}</ul>
-        <h3>Add Meals To Your Plan</h3>
+    let addableContent = (
+      <div className="addable__content">
+        <h3 className="addable__content-header">Add Meals To Your Plan</h3>
         <Link to={`/meals`} className="text-center">
           <p>Meal Not listed? Create meal now!</p>
         </Link>
         <Meals />
+      </div>
+    );
+
+    return (
+      <div className="plan">
+        {mealplanContent}
+        <h3>Current Meals In This Mealplan</h3>
+        <div className="plan__list-div">
+          <ul className="list-unstyled plan__list">
+            {mealContent || noMealContent}
+          </ul>
+        </div>
+
+        {addableContent}
       </div>
     );
   }

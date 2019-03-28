@@ -1,5 +1,8 @@
+/*styling for full components*/
+
 .component {
   margin: 20px;
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .create-component {
@@ -54,6 +57,44 @@
 .delete-link:active,
 .delete-link:visited {
   color: red;
+}
+
+.plan {
+  text-align: center;
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.plan > * {
+  padding: 20px;
+}
+
+.plan__name {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.plan__calories {
+  padding-bottom: 10px;
+}
+
+.plan__button-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.plan__list-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.plan__list-item {
+  text-align: left;
+}
+
+.plan__list-item:not(last-child) {
+  padding-bottom: 10px;
 }
 
 @media only screen and (min-width: 600px) {

@@ -50,21 +50,17 @@ class Weekplan extends Component {
     } else {
       weekplanContent = (
         <div>
-          <div className="text-center">
-            <h1>
-              {weekplan.planname.toUpperCase()} - {weekplan.totalcalories}{" "}
-              Calories
-            </h1>
-          </div>
-          <div className="text-center">
+          <h1 className="plan__name">{weekplan.planname}</h1>
+          <h2 className="plan__calories">{weekplan.totalcalories} Calories</h2>
+          <div className="plan__button-box">
             <button
-              className=" ml-2 btn btn-sm btn-danger"
+              className="btn btn-sm btn-danger"
               onClick={this.onDeleteWeekplanClick.bind(this)}
             >
-              Delete
+              Delete Weekplan
             </button>
             <button
-              className=" ml-2 btn btn-sm btn-warning"
+              className="btn btn-sm btn-warning"
               onClick={this.onCreateWeeklyGroceryListClick.bind(this)}
             >
               Get Grocery List
@@ -76,10 +72,9 @@ class Weekplan extends Component {
       if (weekplan.mealplans.length > 0) {
         weekContent = weekplan.mealplans.map((mealplan, index) => {
           return (
-            <li className="text-center" key={mealplan._id + "meal" + index}>
-              {mealplan.planname}
+            <li className="plan__list-item" key={mealplan._id + "meal" + index}>
               <button
-                className="m-1 btn btn-sm btn-danger"
+                className="btn btn-sm btn-danger"
                 onClick={this.onDeleteMealplanFromWeekplanClick.bind(
                   this,
                   mealplan._id
@@ -87,6 +82,7 @@ class Weekplan extends Component {
               >
                 <i className="fa fa-times" />
               </button>
+              {mealplan.planname}
             </li>
           );
         });
@@ -97,16 +93,25 @@ class Weekplan extends Component {
       }
     }
 
-    return (
-      <div className="component">
-        {weekplanContent}
-        <h3>Current Mealplans In This Weekplan</h3>
-        <ul className="list-unstyled">{weekContent || noWeekContent}</ul>
-        <h3>Add Mealplans To Your Plan</h3>
+    let addableContent = (
+      <div className="addable__content">
+        <h3 className="addable__content-header">Add Meals To Your Plan</h3>
         <Link to={`/meal-plan`} className="text-center">
-          <p>Mealplan Not listed? Create a mealplan now!</p>
+          <p>Mealplan Not listed? Create meal now!</p>
         </Link>
         <Mealplans />
+      </div>
+    );
+
+    return (
+      <div className="plan">
+        {weekplanContent}
+        <h3>Current Mealplans In This Weekplan</h3>
+        <div className="plan__list-div">
+          <ul className="list-unstyled">{weekContent || noWeekContent}</ul>
+        </div>
+
+        {addableContent}
       </div>
     );
   }
