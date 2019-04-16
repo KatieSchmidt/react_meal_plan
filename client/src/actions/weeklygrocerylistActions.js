@@ -1,5 +1,9 @@
 import axios from "axios";
-import { GET_WEEKLY_GROCERY_LIST, CREATE_WEEKLY_GROCERY_LIST } from "./types";
+import {
+  GET_WEEKLY_GROCERY_LIST,
+  CREATE_WEEKLY_GROCERY_LIST,
+  GET_ERRORS
+} from "./types";
 
 //create weekly grocery list from mealplan
 export const createWeeklyGroceryList = (weekplan_id, history) => dispatch => {
@@ -26,7 +30,7 @@ export const getWeeklyGroceryList = weekplan_id => dispatch => {
     )
     .catch(err =>
       dispatch({
-        type: GET_WEEKLY_GROCERY_LIST,
+        type: GET_ERRORS,
         payload: err
       })
     );
@@ -47,7 +51,7 @@ export const deleteFromWeeklyGroceryList = (
     )
     .catch(err =>
       dispatch({
-        type: GET_WEEKLY_GROCERY_LIST,
+        type: GET_ERRORS,
         payload: err
       })
     );

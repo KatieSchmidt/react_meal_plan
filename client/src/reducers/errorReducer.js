@@ -5,7 +5,8 @@ const initialState = {
   ingredient: null,
   calories: null,
   measureunit: null,
-  measureunitquantity: null
+  measureunitquantity: null,
+  grocery: null
 };
 
 export default function(state = initialState, action) {

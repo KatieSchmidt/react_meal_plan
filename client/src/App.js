@@ -10,11 +10,9 @@ import AddIngredient from "./components/meal/AddIngredient";
 import Mealplan from "./components/mealplan/Mealplan";
 import Mealplans from "./components/mealplans/Mealplans";
 import GroceryList from "./components/grocerylist/GroceryList";
-import EditGroceryList from "./components/grocerylist/EditGroceryList";
 import Weekplan from "./components/weekplan/Weekplan";
 import Weekplans from "./components/weekplans/Weekplans";
 import WeeklyGroceryList from "./components/weeklygrocerylist/WeeklyGroceryList";
-import EditWeeklyGroceryList from "./components/weeklygrocerylist/EditWeeklyGroceryList";
 
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
@@ -52,19 +50,17 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
-
             <Route exact path="/meals" component={Meals} />
-
             <Route exact path="/meals/:meal_id" component={Meal} />
-
             <Route
               exact
               path="/meals/:meal_id/ingredient"
               component={AddIngredient}
             />
-
             <Route exact path="/meal-plan" component={Mealplans} />
             <Route exact path="/meal-plan/:mealplan_id" component={Mealplan} />
+            <Route exact path="/week-plan/" component={Weekplans} />
+            <Route exact path="/week-plan/:week_plan_id" component={Weekplan} />
             <Route
               exact
               path="/grocery-list/:mealplan_id"
@@ -72,21 +68,8 @@ class App extends Component {
             />
             <Route
               exact
-              path="/grocery-list/:mealplan_id/edit"
-              component={EditGroceryList}
-            />
-            <Route exact path="/week-plan/" component={Weekplans} />
-
-            <Route exact path="/week-plan/:week_plan_id" component={Weekplan} />
-            <Route
-              exact
               path="/weekly-grocery-list/:week_plan_id"
               component={WeeklyGroceryList}
-            />
-            <Route
-              exact
-              path="/weekly-grocery-list/:week_plan_id/edit"
-              component={EditWeeklyGroceryList}
             />
           </div>
         </Router>

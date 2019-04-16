@@ -16,12 +16,12 @@ class GroceryList extends Component {
       );
     }
   }
+
   onDeleteFromGroceryListClick(ingredient_id) {
     this.props.deleteFromGroceryList(
       this.props.match.params.mealplan_id,
       ingredient_id
     );
-    console.log("Button Clicked to delete");
   }
   render() {
     const { grocerylist } = this.props.grocerylist;
@@ -51,7 +51,7 @@ class GroceryList extends Component {
 
     return (
       <div>
-        <h1>Grocery List</h1>
+        <h1 className="grocery__name">Grocery List</h1>
         <ul>{listItems}</ul>
       </div>
     );

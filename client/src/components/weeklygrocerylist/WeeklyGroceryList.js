@@ -51,7 +51,7 @@ class WeeklyGroceryList extends Component {
 
     return (
       <div>
-        <h1>Grocery List</h1>
+        <h1 className="grocery__name">Grocery List</h1>
         <ul>{listItems}</ul>
       </div>
     );

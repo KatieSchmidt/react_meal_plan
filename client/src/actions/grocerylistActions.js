@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_GROCERY_LIST, CREATE_GROCERY_LIST } from "./types";
+import { GET_GROCERY_LIST, CREATE_GROCERY_LIST, GET_ERRORS } from "./types";
 
 //create grocery list from mealplan
 export const createGroceryList = (mealplan_id, history) => dispatch => {
@@ -26,8 +26,8 @@ export const getGroceryList = mealplan_id => dispatch => {
     )
     .catch(err =>
       dispatch({
-        type: GET_GROCERY_LIST,
-        payload: err
+        type: GET_ERRORS,
+        payload: err.response.data
       })
     );
 };
@@ -47,8 +47,8 @@ export const deleteFromGroceryList = (
     )
     .catch(err =>
       dispatch({
-        type: GET_GROCERY_LIST,
-        payload: err
+        type: GET_ERRORS,
+        payload: err.response.data
       })
     );
 };
